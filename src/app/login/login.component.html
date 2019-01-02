@@ -5,7 +5,7 @@
 		<form class="form">
 			<input type="text" placeholder="Username" readonly onfocus="this.removeAttribute('readonly')">
 			<input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly')">
-      <button type="submit" id="login-button">Login</button><br><br>
+      <button type="submit" id="login-button" (click)="login()">Login</button><br><br>
       <button type="submit" routerLink="signup" id="signup-button">SignUp</button>
 		</form>
 	</div>

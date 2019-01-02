@@ -131,6 +131,10 @@ form{
 		}
 	}
 	#signup-button{
+		position: relative;
+		float: right;
+		left: 100%;
+		bottom: 582px;
 		appearance: none;
 		outline: 0;
 		//background-color: rgb(250, 246, 246,.1);
@@ -259,4 +263,32 @@ form{
 @keyframes square {
   0%   { transform: translateY(0); }
   100% { transform: translateY(-700px) rotate(600deg); }
+}
+
+@media screen and (max-width: 800px) {
+	#signup-button{
+	    bottom: 171% !important;
+    padding: 10px 23px !important;
+    position: absolute !important;
+    left: 201px !important;
+    background: rgba(8, 9, 11, 0.2);
+    font-size: 16px !important;
+}
+
+		form{
+			input{
+				width: 297px;
+				padding: 15px 15px;
+			}
+		}
+		form{
+			bottom: 127px;
+		}
+		.container{
+		h1{
+			position: relative;
+			bottom: 130px;
+
+		}
+	}
 }

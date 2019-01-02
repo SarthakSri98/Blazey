@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, Route } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     document.getElementById('login-button').addEventListener('click',function(event){
@@ -20,6 +21,10 @@ export class LoginComponent implements OnInit {
   //  fade(fade);-})
 })
 
+}
+login()
+{
+    this.router.navigate(['genre']);
 }
 
 }
