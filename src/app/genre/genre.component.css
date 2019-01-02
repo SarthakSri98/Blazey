@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Patrick+Hand');
+
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -57,8 +59,11 @@
 }
 
 .description{
-    margin:30px;
-    font-size: 20px;
+    text-align: center;
+    /* margin-left: 87px; */
+    margin-top: 8px;
+    font-size: 48px;
+    font-family: 'Patrick Hand', cursive;
 }
 
 .openForm{
@@ -78,13 +83,18 @@
 
 .delete{
     position: relative;
-    left: calc(100% - 28px);
+    left: calc(100% - 28px) !important;
     top: -27px;
     outline: none;
-    z-index: 1000;
+    z-index: 1000;    left: -4%;
 }
 
 
 @media screen and (max-width: 800px) {
-
+    .container2{
+        left: -4%;
+    }
+    .search{
+        width:30px;
+    }
 }

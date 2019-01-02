@@ -1,18 +1,15 @@
 <form class="example-form center1" >
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Search">
+    <input matInput placeholder="Search" class="search">
   </mat-form-field>
 </form>
 <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
 
-<div class="container2" [@fadeIn]="topicArray.length">
-<div class="card" *ngFor="let topic of topicArray;let i = index" (click)="open(openModal,i)" >
+<div class="container2" [@fadeIn]="genreArray.length">
+<div class="card" *ngFor="let genre of genreArray;let i = index" (click)="open(openModal,i)" >
     <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
-    <mat-toolbar color="accent" class="toolbar">
-            <span class="title center">{{ i+1 }} - {{ topic.title }}</span>
-      </mat-toolbar>
-  <div class="description"><span>{{ topic.description.substr(0,140) }} <p *ngIf="topic.description.length>140" style="color:red"> ... Read more </p> </span></div>
+  <div class="description"><span>{{ genre.name }} </span></div>
 </div>
 
 
