@@ -10,4 +10,8 @@ router.get('/genre/create',genreController.getGenre);
 
 router.post('/genre/create',genreController.postGenre);
 
+router.get('/topic/create',genreController.getTopic);
+
+router.post('/topic/create',genreController.postTopic);
+
 module.exports = router;

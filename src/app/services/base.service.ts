@@ -17,4 +17,15 @@ export class BaseService {
   {
     return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/genre/create',data);
   }
+
+  getTopic()
+  {
+    return this.http.get<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create');
+  }
+
+  postTopic(data)
+  {
+    return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create',data);
+  }
+
 }

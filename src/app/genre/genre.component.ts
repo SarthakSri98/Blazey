@@ -88,7 +88,7 @@ export class GenreComponent implements OnInit {
     this.currentId = this.genreArray[i]._id;
     localStorage.setItem('currentId', this.currentId);
     console.log(this.currentId);
-    this.router.navigate(['/topic/'+this.currentId]);
+    this.router.navigate(['genre/topic/'+this.currentId]);
   }
 
 

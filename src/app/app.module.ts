@@ -19,7 +19,7 @@ var route:Routes = [
   { path:'signup' ,component:SignupComponent },
   { path:'' ,component:LoginComponent },
   { path:'genre' ,component:GenreComponent},
-  { path:'/topic/:id' , component:TopicComponent }
+  { path:'genre/topic/:id' , component:TopicComponent }
 
 ]
 
