@@ -4,6 +4,7 @@ import { transition,trigger,style,animate,state,stagger,query, keyframes } from 
 import { FormControl,FormGroup,FormControlName } from '@angular/forms'
 import { map } from 'rxjs/operators'
 import { BaseService } from '../services/base.service';
+import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-genre',
   templateUrl: './genre.component.html',
@@ -24,42 +25,32 @@ import { BaseService } from '../services/base.service';
 export class GenreComponent implements OnInit {
 
   i:number;
-  genreArray :any = [
-    { name:'Operating System' },
-    { name:'Competitive Programming' },
-    { name:'Computer Networks' }  
-  ]
+  currentId:string;
+  genreArray :any = []
   title;
   description;
   height = '500px';
   width= '600px';
   height1 = '600px';
-  constructor(private modalService: MatDialog , private _baseService : BaseService) { }
+  constructor(private modalService: MatDialog , private _baseService : BaseService , private router:Router) { }
 
   ngOnInit() {
-  // this.getGenres();
+   this.getGenres();
   }
 
   
-  // getGenres()
-  // {
-  //   this._baseService.getGenres().subscribe(res=>{
-  //      this.genreArray = res.data;
-  //      console.log('res',res.data);
-  //   })
-  // }
+  getGenres()
+  {
+    this._baseService.getGenre().subscribe(res=>{
+       this.genreArray = res.data;
+       console.log('res',res.data);
+    })
+  }
 
-  open(content,i) {
-    //i = this.genreArray.length - 1;
-    this.title = this.genreArray[i].title;
-    this.description = this.genreArray[i].description;
-
-    const dialogConfig = new MatDialogConfig();
-    this.modalService.open(content,{
-      height: this.height,
-      width: this.width,
-      panelClass: 'custom-modalbox'
-    });
+  openTopic(i) {
+    this.currentId = this.genreArray[i]._id;
+    localStorage.setItem('currentId',this.currentId);
+    this.router.navigate(['topic']);
 }
   addNew(content) {
 
@@ -78,22 +69,20 @@ export class GenreComponent implements OnInit {
 
 // Reactive form formGroup data  
   addForm = new FormGroup({
-    title :new FormControl(),
-    tags : new FormControl(),
-    description :new FormControl()
+    genreName :new FormControl(),
   })
   
-  // add()
-  // {
-  //   this._baseService.postGenre(this.addForm.value).subscribe(data=>{
-  //     console.log('post data is :' + data.data)
-  //   });
-  //   console.log(this.addForm.value);
-  //   this.getGenres();
-  //   this.addForm.reset();
-  //   //this.genreArray.push(this.addForm.value);
-  //   this.Cross_click();
-  // }
+  add()
+  {
+    this._baseService.postGenre(this.addForm.value).subscribe(data=>{
+      console.log('post data is :' + data)
+    });
+    console.log(this.addForm.value);
+    this.getGenres();
+    this.addForm.reset();
+    //this.genreArray.push(this.addForm.value);
+    this.Cross_click();
+  }
 
   //  delete(index)
   //  {

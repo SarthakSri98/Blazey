@@ -18,7 +18,8 @@ import { TopicComponent } from './topic/topic.component';
 var route:Routes = [
   { path:'signup' ,component:SignupComponent },
   { path:'' ,component:LoginComponent },
-  { path:'genre' ,component:GenreComponent}
+  { path:'genre' ,component:GenreComponent},
+  { path:'topic' , component:TopicComponent }
 
 ]
 

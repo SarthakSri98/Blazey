@@ -5,12 +5,12 @@
 </form>
 <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
-
-<div class="container2" [@fadeIn]="genreArray.length">
-<div class="card" *ngFor="let genre of genreArray;let i = index" (click)="open(openModal,i)" >
+<p class="description" *ngIf="genreArray.length < 1">Nothing to show dude!</p>
+<div class="container2" [@fadeIn]="genreArray.length" *ngIf="genreArray.length > 0">
+<div class="card" *ngFor="let genre of genreArray;let i = index" (click)="openTopic(i)" >
     <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
-  <div class="description"><span>{{ genre.name }} </span></div>
-</div>
+  <div class="description"><span>{{ genre.genreName }} </span></div>
+</div></div>
 
 
 
@@ -33,13 +33,7 @@
   </mat-toolbar><br><br>
     <form class="example-form center3" [formGroup]="addForm" (ngSubmit)="add()" >
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Title" formControlName="title" required>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Tags" formControlName="tags">
-          </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Description" rows="4" formControlName="description" required></textarea>
+          <input matInput placeholder="Title" formControlName="genreName" required>
         </mat-form-field>
         <button class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</button>
       <button class="formButtons" type="submit"  mat-raised-button>Add</button>
