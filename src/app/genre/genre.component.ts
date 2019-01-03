@@ -1,80 +1,119 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog,MatDialogConfig,MAT_DIALOG_DATA,MatTooltip } from '@angular/material/';
-import { transition,trigger,style,animate,state,stagger,query, keyframes } from '@angular/animations';
-import { FormControl,FormGroup,FormControlName } from '@angular/forms'
-import { map } from 'rxjs/operators'
-import { BaseService } from '../services/base.service';
-import { Route, Router } from '@angular/router';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MAT_DIALOG_DATA,
+  MatTooltip
+} from '@angular/material/';
+import {
+  transition,
+  trigger,
+  style,
+  animate,
+  state,
+  stagger,
+  query,
+  keyframes
+} from '@angular/animations';
+import {
+  FormControl,
+  FormGroup,
+  FormControlName
+} from '@angular/forms'
+import {
+  map
+} from 'rxjs/operators'
+import {
+  BaseService
+} from '../services/base.service';
+import {
+  Route,
+  Router
+} from '@angular/router';
 @Component({
   selector: 'app-genre',
   templateUrl: './genre.component.html',
   styleUrls: ['./genre.component.css'],
   animations: [
-    
-    trigger('fadeIn',  [
-       transition('*=>*',[
-          query(':enter',style({opacity:0,transform:'translate(0,-20px)'}),{optional:true}),
-          query(':enter',stagger('400ms',[
-               animate('.3s ease-in',style({ opacity:1,transform:'translate(0,0)' }))
-  
-          ]),{optional:true}),
-        ])
+
+    trigger('fadeIn', [
+      transition('*=>*', [
+        query(':enter', style({
+          opacity: 0,
+          transform: 'translate(0,-20px)'
+        }), {
+          optional: true
+        }),
+        query(':enter', stagger('400ms', [
+          animate('.3s ease-in', style({
+            opacity: 1,
+            transform: 'translate(0,0)'
+          }))
+
+        ]), {
+          optional: true
+        }),
       ])
-    ]
+    ])
+  ]
 })
 export class GenreComponent implements OnInit {
 
-  i:number;
-  currentId:string;
-  genreArray :any = []
+  i: number;
+  currentId: string;
+  genreArray: any = []
   title;
   description;
   height = '500px';
-  width= '600px';
+  width = '600px';
   height1 = '600px';
-  constructor(private modalService: MatDialog , private _baseService : BaseService , private router:Router) { }
+  constructor(private modalService: MatDialog, private _baseService: BaseService, private router: Router) {}
 
   ngOnInit() {
-   this.getGenres();
+    this.getGenres();
   }
 
-  
-  getGenres()
-  {
-    this._baseService.getGenre().subscribe(res=>{
-       this.genreArray = res.data;
-       console.log('res',res.data);
+
+  getGenres() {
+    this._baseService.getGenre().subscribe(res => {
+      this.genreArray = res.data;
+      console.log('res', res.data);
     })
   }
 
   openTopic(i) {
     this.currentId = this.genreArray[i]._id;
-    localStorage.setItem('currentId',this.currentId);
-    this.router.navigate(['topic']);
-}
+    localStorage.setItem('currentId', this.currentId);
+    console.log(this.currentId);
+    this.router.navigate(['/topic/'+this.currentId]);
+  }
+
+
   addNew(content) {
 
     const dialogConfig = new MatDialogConfig();
-    this.modalService.open(content,{
+    this.modalService.open(content, {
       height: this.height1,
       width: this.width,
       panelClass: 'custom-modalbox'
     });
 
-    
+
   }
-  Cross_click(){
-      this.modalService.closeAll();
+  Cross_click() {
+    this.modalService.closeAll();
   }
 
-// Reactive form formGroup data  
+  // Reactive form formGroup data  
   addForm = new FormGroup({
-    genreName :new FormControl(),
+    genreName: new FormControl(),
   })
-  
-  add()
-  {
-    this._baseService.postGenre(this.addForm.value).subscribe(data=>{
+
+  add() {
+    this._baseService.postGenre(this.addForm.value).subscribe(data => {
       console.log('post data is :' + data)
     });
     console.log(this.addForm.value);
