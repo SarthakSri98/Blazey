@@ -21,9 +21,17 @@ exports.getTopic = function(req,res,next){
 exports.postTopic = function(req,res,next){
     
     const topic = new Topic({
-         topicName : req.body.topicName
-     });
+         topicName : req.body.topicName,
+         genre : req.params.id,
+         isSubTopic : req.body.isSubTopic,
+         link : req.body.link,
+         linkCaption : req.body.linkCaption,
+         content : req.body.content
+    });
 
+
+    
+    
      topic.save().then( createdTopic =>{
           res.status(200).json({
               message:"Topic posted succesfully",
@@ -34,6 +42,18 @@ exports.postTopic = function(req,res,next){
           })
      })
 
+     console.log(req.params.id);
+    Genre.findOneAndUpdate({ _id: (req.params.id) },
+    { $push: { 
+        topics: topic._id
+      } 
+    },function (error, success) {
+        if (error) {
+            console.log('err',error);
+        } else {
+            console.log('success',success);
+        }
+    })
 }
 
 

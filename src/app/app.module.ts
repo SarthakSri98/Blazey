@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TopicComponent } from './topic/topic.component';
+import { MatSelectModule, MatOptionModule } from '@angular/material';
 
 var route:Routes = [
   { path:'signup' ,component:SignupComponent },
@@ -35,7 +36,7 @@ var route:Routes = [
   imports: [
     BrowserModule,RouterModule.forRoot(route), BrowserAnimationsModule,
     MatToolbarModule,MatInputModule,MatDialogModule,MatButtonModule,ReactiveFormsModule,FormsModule,
-    HttpClientModule
+    HttpClientModule,MatSelectModule,MatOptionModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,9 +23,9 @@ export class BaseService {
     return this.http.get<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create');
   }
 
-  postTopic(data)
+  postTopic(data,id)
   {
-    return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create',data);
+    return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create/'+id,data);
   }
 
 }
