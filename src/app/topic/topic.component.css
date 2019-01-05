@@ -69,6 +69,15 @@
     outline:none;
 }
 
+.genreValue{
+    display: none;
+}
+.addlink{
+   font-size: 10px;
+   float:right;
+   cursor: pointer;
+}
+
 .formButtons{
     margin-top: 12px;
     float: right;

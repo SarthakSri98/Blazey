@@ -9,8 +9,7 @@ const topicSchema = new Schema({
    topicName : { type: String },
    subTopic  : [{ type: Schema.Types.ObjectId , ref:'SubTopic'  }],
    isSubTopic : { type : Boolean },
-   link : { type:String },
-   linkCaption : { type: String },
+   linkData : [{ link:String , linkCaption : String }],
    content : { type: String , max:3000 }
 });
 

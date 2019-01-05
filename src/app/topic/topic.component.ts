@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog,MatDialogConfig,MAT_DIALOG_DATA,MatTooltip } from '@angular/material/';
 import { transition,trigger,style,animate,state,stagger,query, keyframes } from '@angular/animations';
-import { FormControl,FormGroup,FormControlName } from '@angular/forms'
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { map } from 'rxjs/operators'
 import { BaseService } from '../services/base.service';
 import {  ActivatedRoute } from '@angular/router';
@@ -36,14 +36,39 @@ export class TopicComponent implements OnInit {
   height = '500px';
   width= '600px';
   height1 = '600px';
-  constructor(private modalService: MatDialog , private _baseService : BaseService, private router:ActivatedRoute) { }
+  list = ['a'];
+  topicForm : FormGroup;
+  linkData : FormArray
+
+  constructor(private modalService: MatDialog , private _baseService : BaseService, private router:ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+    this.topicForm = this.formBuilder.group({
+      genre :[{value: this.id, disabled: true}],
+      topicName :'',
+      isSubTopic :'',
+      content :'',
+      linkData : this.formBuilder.array([ this.createItem() ])
+    })
+
     this.id = this.router.snapshot.params.id;
    this.getTopics();
   }
 
   
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      link : '',
+      linkCaption : ''
+    });
+  }
+
+  addItem() {
+    this.linkData = this.topicForm.get('linkData') as FormArray;
+    this.linkData.push(this.createItem());
+  }
+
   getTopics() {
     this._baseService.getTopic().subscribe(res => {
       if(res.data)
@@ -74,32 +99,30 @@ export class TopicComponent implements OnInit {
     });
 
     
+
   }
   Cross_click(){
       this.modalService.closeAll();
   }
 
 // Reactive form formGroup data  
-  addForm = new FormGroup({
-    genre :new FormControl(),
-    topicName :new FormControl(),
-    isSubTopic :new FormControl(),
-    link : new FormControl(),
-    linkCaption : new FormControl(),
-    content :new FormControl()
-  })
+  
   
   add() {
-    this._baseService.postTopic(this.addForm.value,this.id).subscribe(data => {
+    this._baseService.postTopic(this.topicForm.value,this.id).subscribe(data => {
       console.log('post data is :' + data)
     });
-    console.log(this.addForm.value);
-    this.getTopics();
-    this.addForm.reset();
-    //this.genreArray.push(this.addForm.value);
+    console.log(this.topicForm.value);
+   this.getTopics();
+    this.topicForm.reset();
+    //this.genreArray.push(this.topicForm.value);
     this.Cross_click();
   }
 
+  addLink()
+  {
+    this.list.push('a');
+  }
   //  delete(index)
   //  {
   //    this._baseService.deleteTopic(this.topicArray[index]._id).subscribe(result=>{

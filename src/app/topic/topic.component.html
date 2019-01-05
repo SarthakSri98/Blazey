@@ -34,25 +34,45 @@
     <mat-toolbar>
         <span class="title center2">Add new Term</span>
   </mat-toolbar><br><br>
-    <form class="example-form center3" [formGroup]="addForm" (ngSubmit)="add()" >
+    <form class="example-form center3" [formGroup]="topicForm" (ngSubmit)="add()" >
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Topic" formControlName="topicName" required>
         </mat-form-field>
+        <input matInput placeholder="Topic" class="genreValue" formControlName="genre" required>
+
         <mat-form-field class="example-full-width">
-            <mat-select #isSt matInput placeholder="Will there be any subtopic" formControlName="isSubTopic">
+            <mat-select #isSt matInput [value]="true" placeholder="Will there be any subtopic" formControlName="isSubTopic">
               <mat-option [value]="true">Yes</mat-option>
               <mat-option [value]="false">No</mat-option>
             </mat-select>
           </mat-form-field>
 
-       <div *ngIf="isSt.value">   
+       <div *ngIf="!isSt.value">   
+         <!-- <div *ngFor="let item of list">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Link" rows="4" formControlName="link">
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="LinkCaption" rows="4" formControlName="linkCaption">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
+      </div> -->
+      <div formArrayName="linkData"
+      *ngFor="let item of topicForm.get('linkData').controls; let i = index;">
+      <div [formGroupName]="i">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Link" rows="4" formControlName="link">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="LinkCaption" rows="4" formControlName="linkCaption">
+            </mat-form-field>
+
+      </div>
+    
+      <!-- Chosen name: {{ topicForm.controls.linkData.controls[i].value }} -->
+    </div>
+    <span (click)="addItem()" class="addLink" style="font-size: 13px;float:right;cursor: pointer;"><i class="fas fa-plus" style="font-size: 10px;"></i> Add more Links</span>
+      <mat-form-field class="example-full-width">
           <textarea matInput placeholder="Description" rows="4" formControlName="content" required></textarea>
         </mat-form-field>
       </div>

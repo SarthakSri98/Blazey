@@ -22,10 +22,9 @@ exports.postTopic = function(req,res,next){
     
     const topic = new Topic({
          topicName : req.body.topicName,
-         genre : req.params.id,
+         genre : req.body.genre,
          isSubTopic : req.body.isSubTopic,
-         link : req.body.link,
-         linkCaption : req.body.linkCaption,
+         linkData : req.body.linkData,
          content : req.body.content
     });
 
