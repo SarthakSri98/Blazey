@@ -11,9 +11,9 @@
     <div *ngIf="!topic.isSubTopic" (click)="open(openModal,i)">
       <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
       <mat-toolbar color="accent" class="toolbar">
-        <span class="title center">{{ i+1 }} - {{ topic.topicName }}</span>
+        <span class="title center">{{ i+1 }}. {{ topic.topicName }}</span>
       </mat-toolbar>
-      <div class="description"><span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content.length>140"
+      <div class="description1"><span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content.length>140"
             style="color:red"> ... Read more </p> </span></div>
     </div>
     <div *ngIf="topic.isSubTopic" (click)="goToSubTopic(topic._id)">
@@ -31,15 +31,20 @@
       <span class="title center2">{{ currentOpened.topicName }}</span>
     </mat-toolbar>
   </div><br>
-  <p>Important Links : </p>
+  <p style="text-align: center;">Important Links : </p><br>
   <div class="modal-body" *ngFor="let linkData of currentOpened.linkData;let i=index">
       
-      <i>{{i+1}}.</i>&nbsp;<a [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
-      <a [href]="linkData.link" class="link">{{ linkData.link }}</a>
-
+    <table>
+      <tr>
+      <td><span>{{i+1}}.</span></td>
+      <td><a [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
+      <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
+    </tr>
+    </table>
   </div>
+  <p style="text-align: center;">Description</p><br>
   <div class="modal-body">
-    <div class="description"><span>{{ currentOpened.content }}</span></div>
+    <div class="description2"><span>{{ currentOpened.content }}</span></div>
   </div>
 
 </ng-template>
@@ -62,14 +67,6 @@
     </mat-form-field>
 
     <div *ngIf="!isSt.value">
-      <!-- <div *ngFor="let item of list">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Link" rows="4" formControlName="link">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="LinkCaption" rows="4" formControlName="linkCaption">
-        </mat-form-field>
-      </div> -->
       <div formArrayName="linkData" *ngFor="let item of topicForm.get('linkData').controls; let i = index;">
         <div [formGroupName]="i">
           <mat-form-field class="example-full-width">
@@ -81,8 +78,6 @@
           </mat-form-field>
 
         </div>
-
-        <!-- Chosen name: {{ topicForm.controls.linkData.controls[i].value }} -->
       </div>
       <span (click)="addItem()" class="addLink" style="font-size: 13px;float:right;cursor: pointer;"><i class="fas fa-plus"
           style="font-size: 10px;"></i> Add more Links</span>

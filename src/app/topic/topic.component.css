@@ -13,12 +13,11 @@
 .center{
     text-align: center;
     position: relative;
-    left: 24%;
+    left: 36%;
 }
 .center2{
-    text-align: center;
     position: relative;
-    left: 35%;
+    left: 43%;
 }
 .center1{
     text-align: center;
@@ -60,12 +59,23 @@
 	max-width: 92%;
 }
 
-.description{
+.description2{
+    margin:30px;
+    font-size: 26px;
+    font-family: 'Patrick Hand', cursive;
+}
+.description1{
     margin:30px;
     font-size: 20px;
     font-family: 'Patrick Hand', cursive;
 }
-
+.description{
+    text-align: center;
+    /* margin-left: 87px; */
+    margin-top: 8px;
+    font-size: 48px;
+    font-family: 'Patrick Hand', cursive;
+}
 .openForm{
     bottom: 28px;
     position: relative;
@@ -81,8 +91,14 @@
 .link:hover{
     text-decoration: none;
     cursor: pointer;
+    color:red;
 
 }
+
+td span {
+    font-size: 19px;
+}
+
 .genreValue{
     display: none;
 }

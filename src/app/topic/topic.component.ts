@@ -30,9 +30,10 @@ export class TopicComponent implements OnInit {
   topicArray :any = [
   ]
   currentOpened={};
-  height = '500px';
-  width= '600px';
+  height = '700px';
+  width= '800px';
   height1 = '600px';
+  width1 = '600px';
   list = ['a'];
   topicForm : FormGroup;
   linkData : FormArray
@@ -50,11 +51,12 @@ export class TopicComponent implements OnInit {
     })
 
     this.id = this.router.snapshot.params.id;
-   this.getTopics();
+   this.getTopics(this.id);
   }
 
-  getTopics() {
-    this._baseService.getTopic().subscribe(res => {
+  getTopics(id) {
+    this._baseService.getTopic(id).subscribe(res => {
+      console.log('res out', res);
       if(res.topics)
       this.topicArray = res.topics;
       console.log('res', res.topics);
@@ -86,12 +88,12 @@ addItem() {
   this.linkData.push(this.createItem());
 }
 
-  addNew(content) {
+addNew(content) {
 
     const dialogConfig = new MatDialogConfig();
     this.modalService.open(content,{
       height: this.height1,
-      width: this.width,
+      width: this.width1,
       panelClass: 'custom-modalbox'
     });
 
@@ -110,7 +112,7 @@ addItem() {
       console.log('post data is :' + data)
     });
     console.log(this.topicForm.value);
-   this.getTopics();
+   this.getTopics(this.id);
     this.topicForm.reset();
     //this.genreArray.push(this.topicForm.value);
     this.Cross_click();

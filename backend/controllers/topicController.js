@@ -1,12 +1,13 @@
 const async = require('async');
 const Topic = require('../models/topicModel');
 const Genre = require('../models/genreModel');
-
+const mongoose = require('mongoose');
 exports.getTopic = function(req,res,next){
-
+    console.log('id from the url',mongoose.Types.ObjectId(req.query.id));
     async.parallel({
-        topics: (cb)=> Topic.find({'genre':req.params.id}).populate('genre').populate('subTopic').exec(cb)
+        topics: (cb)=> Topic.find({'genre':mongoose.Types.ObjectId(req.query.id)}).populate('genre').populate('subTopic').exec(cb)
   },(err,result)=>{
+      console.log(result);
       if (err) { return next(err); }
       if (result.topics==null) { // No results.
           var err = new Error('author not found');
@@ -19,10 +20,10 @@ exports.getTopic = function(req,res,next){
 
 
 exports.postTopic = function(req,res,next){
-    
+    console.log(req.body);
     const topic = new Topic({
          topicName : req.body.topicName,
-         genre : req.body.genre,
+         genre : mongoose.Types.ObjectId(req.params.id),
          isSubTopic : req.body.isSubTopic,
          linkData : req.body.linkData,
          content : req.body.content
