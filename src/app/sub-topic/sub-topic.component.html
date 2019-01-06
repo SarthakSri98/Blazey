@@ -1,0 +1,52 @@
+<p>sub-topic works</p>
+
+<!-- <form class="example-form center1" >
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search">
+    </mat-form-field>
+  </form>
+  <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fa fa-plus"></i></button>
+  
+  
+  <div class="container" [@fadeIn]="topicArray.length">
+  <div class="card" *ngFor="let topic of topicArray;let i = index" (click)="open(openModal,i)" >
+      <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+      <mat-toolbar color="accent">
+              <span class="title center">{{ i+1 }} - {{ topic.title }}</span>
+        </mat-toolbar>
+    <div class="description"><span>{{ topic.description.substr(0,140) }} <p *ngIf="topic.description.length>140" style="color:red"> ... Read more </p> </span></div>
+  </div>
+  </div>
+  
+  <ng-template #openModal let-c="close" let-d="dismiss">
+      <div class="modal-header">
+          <mat-toolbar>
+              <span class="title center2">{{ title }}</span>
+        </mat-toolbar>
+          </div>
+      <div class="modal-body">
+          <div class="description"><span>{{ description }}</span></div>
+        </div>
+    
+    </ng-template>
+  
+    <ng-template #openForm let-c="close" let-d="dismiss">
+        <mat-toolbar>
+            <span class="title center2">Add new Term</span>
+      </mat-toolbar><br><br>
+        <form class="example-form center3" [formGroup]="addForm" (ngSubmit)="add()" >
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Title" formControlName="title" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Tags" formControlName="tags">
+              </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Description" rows="4" formControlName="description" required></textarea>
+            </mat-form-field>
+            <button class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</button>
+          <button class="formButtons" type="submit"  mat-raised-button>Add</button>
+          </form>
+          
+  
+      </ng-template> -->

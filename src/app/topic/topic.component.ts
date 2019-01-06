@@ -4,7 +4,7 @@ import { transition,trigger,style,animate,state,stagger,query, keyframes } from 
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { map } from 'rxjs/operators'
 import { BaseService } from '../services/base.service';
-import {  ActivatedRoute } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
@@ -28,11 +28,8 @@ export class TopicComponent implements OnInit {
   id:string;
   i:number;
   topicArray :any = [
-   { title:"Linked List" , description: "Create a treasure hunt, with each of the treasure prize zones containing a treat along with a clue about where the next prize can be found - akin to a chain of nodes each containing some data and also the address of the next node. You could let the kid know if a prize is to be removed from the middle, the previous prize point should point to the one that comes after the removed prize (delete a node I say) - but doing this will ruin the hunt for the kid, so lets skip that part :)" },
-   { title:"Cloud Computing" , description: "Cloud computing means storing and accessing data and programs over the Internet instead of your computer's hard drive" },
   ]
-  title;
-  description;
+  currentOpened={};
   height = '500px';
   width= '600px';
   height1 = '600px';
@@ -40,7 +37,7 @@ export class TopicComponent implements OnInit {
   topicForm : FormGroup;
   linkData : FormArray
 
-  constructor(private modalService: MatDialog , private _baseService : BaseService, private router:ActivatedRoute, private formBuilder: FormBuilder) { }
+  constructor(private modalService: MatDialog , private _baseService : BaseService, private router:ActivatedRoute, private formBuilder: FormBuilder, private route : Router) { }
 
   ngOnInit() {
 
@@ -56,31 +53,18 @@ export class TopicComponent implements OnInit {
    this.getTopics();
   }
 
-  
-  createItem(): FormGroup {
-    return this.formBuilder.group({
-      link : '',
-      linkCaption : ''
-    });
-  }
-
-  addItem() {
-    this.linkData = this.topicForm.get('linkData') as FormArray;
-    this.linkData.push(this.createItem());
-  }
-
   getTopics() {
     this._baseService.getTopic().subscribe(res => {
-      if(res.data)
-      this.topicArray = res.data;
-      console.log('res', res.data);
+      if(res.topics)
+      this.topicArray = res.topics;
+      console.log('res', res.topics);
     })
   }
 
   open(content,i) {
     //i = this.topicArray.length - 1;
-    this.title = this.topicArray[i].title;
-    this.description = this.topicArray[i].description;
+    this.currentOpened = this.topicArray[i];
+    console.log(this.currentOpened);
 
     const dialogConfig = new MatDialogConfig();
     this.modalService.open(content,{
@@ -89,6 +73,19 @@ export class TopicComponent implements OnInit {
       panelClass: 'custom-modalbox'
     });
 }
+
+createItem(): FormGroup {
+  return this.formBuilder.group({
+    link : '',
+    linkCaption : ''
+  });
+}
+
+addItem() {
+  this.linkData = this.topicForm.get('linkData') as FormArray;
+  this.linkData.push(this.createItem());
+}
+
   addNew(content) {
 
     const dialogConfig = new MatDialogConfig();
@@ -122,6 +119,10 @@ export class TopicComponent implements OnInit {
   addLink()
   {
     this.list.push('a');
+  }
+
+  goToSubTopic(id){
+     this.route.navigate(['genre/topic/'+this.id+'/subtopic/'+id])
   }
   //  delete(index)
   //  {

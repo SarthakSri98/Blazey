@@ -15,13 +15,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TopicComponent } from './topic/topic.component';
 import { MatSelectModule, MatOptionModule } from '@angular/material';
+import { SubTopicComponent } from './sub-topic/sub-topic.component';
 
 var route:Routes = [
   { path:'signup' ,component:SignupComponent },
   { path:'' ,component:LoginComponent },
   { path:'genre' ,component:GenreComponent},
-  { path:'genre/topic/:id' , component:TopicComponent }
-
+  { path:'genre/topic/:id' , component:TopicComponent },
+  { path:'genre/topic/:id/subtopic/:id1', component:SubTopicComponent }
 ]
 
 
@@ -31,7 +32,8 @@ var route:Routes = [
     LoginComponent,
     SignupComponent,
     GenreComponent,
-    TopicComponent
+    TopicComponent,
+    SubTopicComponent
   ],
   imports: [
     BrowserModule,RouterModule.forRoot(route), BrowserAnimationsModule,

@@ -34,7 +34,7 @@ exports.postTopic = function(req,res,next){
      topic.save().then( createdTopic =>{
           res.status(200).json({
               message:"Topic posted succesfully",
-              data:{
+              topics:{
                   ...createdTopic,
                   _id:createdTopic._id
               }
