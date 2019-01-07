@@ -61,9 +61,17 @@
 .description{
     text-align: center;
     /* margin-left: 87px; */
-    margin-top: 8px;
+    margin-top: 48px;
     font-size: 48px;
     font-family: 'Patrick Hand', cursive;
+}
+
+mat-toolbar{
+    background: #ff4081;
+    height: auto;
+    word-wrap: break-word;
+    color: #fff;
+    padding: 14px;
 }
 
 .openForm{

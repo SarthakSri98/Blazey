@@ -1,3 +1,6 @@
+<h1 style=" font-family: 'Patrick Hand', cursive;
+text-align: center;">SUB-TOPICS</h1>
+
 <form class="example-form center1">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Search">
@@ -5,7 +8,7 @@
 </form>
 <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
-
+<p class="description" *ngIf="subTopicArray.length < 1">Nothing to show dude!</p>
 <div class="container2" [@fadeIn]="subTopicArray.length">
   <div class="card" *ngFor="let topic of subTopicArray;let i = index" (click)="open(openModal,i)">
       <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
@@ -32,7 +35,7 @@
       <tr>
       <td><span>{{i+1}}.</span></td>
       <td><a [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
-      <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
+      <a target="_blank" [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
     </tr>
     </table>
   </div>

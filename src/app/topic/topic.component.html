@@ -1,3 +1,6 @@
+<h1 style=" font-family: 'Patrick Hand', cursive;
+text-align: center;">TOPICS</h1>
+
 <form class="example-form center1">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Search">
@@ -5,7 +8,7 @@
 </form>
 <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
-
+<p class="description" *ngIf="topicArray.length < 1">Nothing to show dude!</p>
 <div class="container2" [@fadeIn]="topicArray.length">
   <div class="card" *ngFor="let topic of topicArray;let i = index">
     <div *ngIf="!topic.isSubTopic" (click)="open(openModal,i)">
@@ -37,12 +40,12 @@
     <table>
       <tr>
       <td><span>{{i+1}}.</span></td>
-      <td><a [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
+      <td><a target="_blank" [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
       <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
     </tr>
     </table>
-  </div>
-  <p style="text-align: center;">Description</p><br>
+  </div><br>
+  <p style="text-align: center;">Description</p>
   <div class="modal-body">
     <div class="description2"><span>{{ currentOpened.content }}</span></div>
   </div>
