@@ -1,6 +1,10 @@
 <h1 style=" font-family: 'Patrick Hand', cursive;
 text-align: center;">SUB-TOPICS</h1>
 
+
+<h2 style=" font-family: 'Patrick Hand', cursive;
+text-align: center;">IN {{ currentTopic | uppercase }}</h2>
+
 <form class="example-form center1">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Search">
@@ -28,10 +32,10 @@ text-align: center;">SUB-TOPICS</h1>
       <span class="title center2">{{ currentOpened.topicName }}</span>
     </mat-toolbar>
   </div><br>
-  <p style="text-align: center;">Important Links : </p><br>
-  <div class="modal-body" *ngFor="let linkData of currentOpened.linkData;let i=index">
+  <p style="text-align: center;" *ngIf="currentOpened.linkData.length>-1">Important Links : </p><br>
+  <div class="modal-body"  *ngFor="let linkData of currentOpened.linkData;let i=index">
       
-    <table>
+    <table *ngIf="currentOpened.linkData.length>-1">
       <tr>
       <td><span>{{i+1}}.</span></td>
       <td><a [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
@@ -54,7 +58,7 @@ text-align: center;">SUB-TOPICS</h1>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Topic" formControlName="subTopic" required>
     </mat-form-field>
-    <div formArrayName="linkData" *ngFor="let item of subTopicForm.get('linkData').controls; let i = index;">
+    <div formArrayName="linkData"  *ngFor="let item of subTopicForm.get('linkData').controls; let i = index;">
         <div [formGroupName]="i">
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Link" rows="4" formControlName="link">

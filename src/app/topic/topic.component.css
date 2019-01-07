@@ -14,14 +14,14 @@
 .center{
     text-align: center;
     position: relative;
-    /* left: 36%; */
     display: block;
-    max-width: 137px;
+    max-width: 429px;
     word-wrap: break-word;
+    white-space: normal;
 }
 .center2{
     position: relative;
-    left: 43%;
+    white-space: normal;
 }
 .center1{
     text-align: center;
@@ -36,8 +36,9 @@
     top: -15px;
 }
 .card{
-   height: 350px;
-   width:400px;
+    height: auto;
+    min-height: 350px;
+    width:400px;
    float:left;
    border-radius: 14px;
    margin-left: 70px;
@@ -84,7 +85,7 @@ mat-toolbar{
 .description{
     text-align: center;
     /* margin-left: 87px; */
-    margin-top: 48px;
+    margin-top: 12%;
     font-size: 48px;
     font-family: 'Patrick Hand', cursive;
 }

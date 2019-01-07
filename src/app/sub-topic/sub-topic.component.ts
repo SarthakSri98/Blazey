@@ -30,6 +30,7 @@ export class SubTopicComponent implements OnInit {
   subTopicArray :any = [
   ]
   currentOpened={};
+  currentTopic:string;
   height = '700px';
   width= '800px';
   height1 = '600px';
@@ -53,6 +54,7 @@ export class SubTopicComponent implements OnInit {
 
   getSubTopics(id) {
     this._baseService.getSubTopic(id).subscribe(res => {
+      this.currentTopic = res.topic;
       console.log('res out', res);
       if(res.subtopics)
       this.subTopicArray = res.subtopics;

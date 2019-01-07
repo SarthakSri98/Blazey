@@ -20,7 +20,7 @@ export class BaseService {
 
   getTopic(id)
   {
-    return this.http.get<{ message:string , topics:{} }>('http://localhost:8000/catalog/topic/create',{params:{'id':id  }});
+    return this.http.get<{ message:string , topics:{} , genre:string }>('http://localhost:8000/catalog/topic/create',{params:{'id':id  }});
   }
 
   postTopic(data,id)
@@ -30,7 +30,7 @@ export class BaseService {
 
   getSubTopic(id1)
   {
-    return this.http.get<{ message:string , subtopics:{} }>('http://localhost:8000/catalog/subtopic/create',{params:{'id1':id1  }});
+    return this.http.get<{ message:string , subtopics:{} , topic:string }>('http://localhost:8000/catalog/subtopic/create',{params:{'id1':id1  }});
   }
 
   postSubTopic(data,id1)

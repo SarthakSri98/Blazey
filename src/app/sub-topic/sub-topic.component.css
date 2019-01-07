@@ -13,11 +13,14 @@
 .center{
     text-align: center;
     position: relative;
-    left: 36%;
+    display: block;
+    max-width: 429px;
+    word-wrap: break-word;
+    white-space: normal;
 }
 .center2{
     position: relative;
-    left: 43%;
+    white-space: normal;
 }
 .center1{
     text-align: center;
@@ -80,7 +83,7 @@ mat-toolbar{
 .description{
     text-align: center;
     /* margin-left: 87px; */
-    margin-top: 48px;
+    margin-top: 12%;
     font-size: 48px;
     font-family: 'Patrick Hand', cursive;
 }

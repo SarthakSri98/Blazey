@@ -9,6 +9,7 @@ exports.getSubTopic = function(req,res)
     console.log('id1',req.query.id1);
 
       async.parallel({
+         topic : cb=>Topic.findById(mongoose.Types.ObjectId(req.query.id1)).exec(cb),
          subtopic : cb=> { SubTopic.find({ 'topicName':mongoose.Types.ObjectId(req.query.id1) }).populate('genreName').populate('topicName').exec(cb) }   
      },(err,result)=>{
          console.log(result);
@@ -17,7 +18,8 @@ exports.getSubTopic = function(req,res)
          {
              res.status(200).json({
                  message: "subtopic had been recieved succesfully",
-                 subtopics:result.subtopic
+                 subtopics:result.subtopic,
+                 topic: result.topic.topicName
              })
          }
      })

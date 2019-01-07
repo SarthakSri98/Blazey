@@ -30,6 +30,7 @@ export class TopicComponent implements OnInit {
   topicArray :any = [
   ]
   currentOpened={};
+  currentGenre:string;
   height = '700px';
   width= '800px';
   height1 = '600px';
@@ -52,10 +53,13 @@ export class TopicComponent implements OnInit {
 
     this.id = this.router.snapshot.params.id;
    this.getTopics(this.id);
+
   }
 
   getTopics(id) {
     this._baseService.getTopic(id).subscribe(res => {
+
+      this.currentGenre = res.genre;
       console.log('res out', res);
       if(res.topics)
       this.topicArray = res.topics;

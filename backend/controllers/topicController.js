@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 exports.getTopic = function(req,res,next){
     console.log('id from the url',mongoose.Types.ObjectId(req.query.id));
     async.parallel({
+        genre : (cb)=> Genre.findById(mongoose.Types.ObjectId(req.query.id)).exec(cb),
         topics: (cb)=> Topic.find({'genre':mongoose.Types.ObjectId(req.query.id)}).populate('genre').populate('subTopic').exec(cb)
   },(err,result)=>{
       console.log(result);
@@ -14,7 +15,7 @@ exports.getTopic = function(req,res,next){
           err.status = 404;
           return next(err);
       }
-      res.status(200).json({ title:"Topics detail" , topics:result.topics });
+      res.status(200).json({ title:"Topics detail" , topics:result.topics , genre:result.genre.genreName });
   });
 }
 
