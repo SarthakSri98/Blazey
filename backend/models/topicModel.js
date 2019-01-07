@@ -7,7 +7,7 @@ const SubTopic = require('./subtopicModel');
 const topicSchema = new Schema({
    genre : { type: Schema.Types.ObjectId , ref:'Genre'  },
    topicName : { type: String },
-   subTopic  : [{ type: Schema.Types.ObjectId , ref:'SubTopic'  }],
+   subTopics  : [{ type: Schema.Types.ObjectId , ref:'SubTopic'  }],
    isSubTopic : { type : Boolean },
    linkData : [{ link:String , linkCaption : String }],
    content : { type: String , max:3000 }

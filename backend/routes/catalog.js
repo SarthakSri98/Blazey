@@ -14,4 +14,7 @@ router.get('/topic/create',topicController.getTopic);
 
 router.post('/topic/create/:id',topicController.postTopic);
 
+router.get('/subtopic/create',subTopicController.getSubTopic);
+
+router.post('/subtopic/create/:id/:idA',subTopicController.postSubTopic);
 module.exports = router;

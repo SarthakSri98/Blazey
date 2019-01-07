@@ -1,52 +1,76 @@
-<p>sub-topic works</p>
+<form class="example-form center1">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Search">
+  </mat-form-field>
+</form>
+<button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
-<!-- <form class="example-form center1" >
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Search">
-    </mat-form-field>
-  </form>
-  <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fa fa-plus"></i></button>
-  
-  
-  <div class="container" [@fadeIn]="topicArray.length">
-  <div class="card" *ngFor="let topic of topicArray;let i = index" (click)="open(openModal,i)" >
+
+<div class="container2" [@fadeIn]="subTopicArray.length">
+  <div class="card" *ngFor="let topic of subTopicArray;let i = index" (click)="open(openModal,i)">
       <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
-      <mat-toolbar color="accent">
-              <span class="title center">{{ i+1 }} - {{ topic.title }}</span>
-        </mat-toolbar>
-    <div class="description"><span>{{ topic.description.substr(0,140) }} <p *ngIf="topic.description.length>140" style="color:red"> ... Read more </p> </span></div>
+      <mat-toolbar color="accent" class="toolbar">
+        <span class="title center">{{ i+1 }}. {{ topic.subTopic }}</span>
+      </mat-toolbar>
+      <div class="description1"><span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content.length>140"
+            style="color:red"> ... Read more </p> </span></div>
+</div></div>
+
+
+
+
+<ng-template #openModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <mat-toolbar>
+      <span class="title center2">{{ currentOpened.topicName }}</span>
+    </mat-toolbar>
+  </div><br>
+  <p style="text-align: center;">Important Links : </p><br>
+  <div class="modal-body" *ngFor="let linkData of currentOpened.linkData;let i=index">
+      
+    <table>
+      <tr>
+      <td><span>{{i+1}}.</span></td>
+      <td><a [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
+      <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
+    </tr>
+    </table>
   </div>
+  <p style="text-align: center;">Description</p><br>
+  <div class="modal-body">
+    <div class="description2"><span>{{ currentOpened.content }}</span></div>
   </div>
-  
-  <ng-template #openModal let-c="close" let-d="dismiss">
-      <div class="modal-header">
-          <mat-toolbar>
-              <span class="title center2">{{ title }}</span>
-        </mat-toolbar>
-          </div>
-      <div class="modal-body">
-          <div class="description"><span>{{ description }}</span></div>
+
+</ng-template>
+
+<ng-template #openForm let-c="close" let-d="dismiss">
+  <mat-toolbar>
+    <span class="title center2">Add new sub-topic</span>
+  </mat-toolbar><br><br>
+  <form class="example-form center3" [formGroup]="subTopicForm" (ngSubmit)="add()">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Topic" formControlName="subTopic" required>
+    </mat-form-field>
+    <div formArrayName="linkData" *ngFor="let item of subTopicForm.get('linkData').controls; let i = index;">
+        <div [formGroupName]="i">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Link" rows="4" formControlName="link">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="LinkCaption" rows="4" formControlName="linkCaption">
+          </mat-form-field>
+
         </div>
-    
-    </ng-template>
-  
-    <ng-template #openForm let-c="close" let-d="dismiss">
-        <mat-toolbar>
-            <span class="title center2">Add new Term</span>
-      </mat-toolbar><br><br>
-        <form class="example-form center3" [formGroup]="addForm" (ngSubmit)="add()" >
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Title" formControlName="title" required>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Tags" formControlName="tags">
-              </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <textarea matInput placeholder="Description" rows="4" formControlName="description" required></textarea>
-            </mat-form-field>
-            <button class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</button>
-          <button class="formButtons" type="submit"  mat-raised-button>Add</button>
-          </form>
-          
-  
-      </ng-template> -->
+      </div>
+      <span (click)="addItem()" class="addLink" style="font-size: 13px;float:right;cursor: pointer;"><i class="fas fa-plus"
+          style="font-size: 10px;"></i> Add more Links</span>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Description" rows="4" formControlName="content" required></textarea>
+      </mat-form-field>
+    <button class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</button>
+    <button class="formButtons" type="submit" mat-raised-button>Add</button>
+  </form>
+
+
+</ng-template>

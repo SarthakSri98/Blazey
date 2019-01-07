@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class BaseService {
 
   constructor(private http : HttpClient) { }
-
+  currentGenreId : string;
   getGenre()
   {
     return this.http.get<{ message:string , data:{} }>('http://localhost:8000/catalog/genre/create');
@@ -20,6 +20,7 @@ export class BaseService {
 
   getTopic(id)
   {
+    localStorage.setItem('currentGenreId',id);
     return this.http.get<{ message:string , topics:{} }>('http://localhost:8000/catalog/topic/create',{params:{'id':id  }});
   }
 
@@ -28,4 +29,14 @@ export class BaseService {
     return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create/'+id,data);
   }
 
+  getSubTopic(id1)
+  {
+    return this.http.get<{ message:string , subtopics:{} }>('http://localhost:8000/catalog/subtopic/create',{params:{'id1':id1  }});
+  }
+
+  postSubTopic(data,id1)
+  {
+    this.currentGenreId = localStorage.getItem('currentGenreId');
+    return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/subtopic/create/'+this.currentGenreId+'/'+id1,data);
+  }
 }

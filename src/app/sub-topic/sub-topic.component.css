@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Patrick+Hand');
+
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+  
+  .example-full-width {
+    width: 100%;
+}
+.center{
+    text-align: center;
+    position: relative;
+    left: 36%;
+}
+.center2{
+    position: relative;
+    left: 43%;
+}
+.center1{
+    text-align: center;
+    position: relative;
+    left: 38%;
+    top:50px;
+}
+.center3{
+    text-align: center;
+    position: relative;
+    left: 4%;
+    top: -15px;
+}
+.card{
+   height: 350px;
+   width:400px;
+   float:left;
+   border-radius: 14px;
+   margin-left: 70px;
+   margin-bottom: 127px;
+   box-shadow: 4px 4px 19px #9e8181;
+   margin-right: 60px;
+   margin-top: -23px;
+   font-family: 'Patrick Hand', cursive;
+}
+.card:hover{
+    cursor: pointer !important;
+}
+.toolbar{
+	position: relative !important;
+    bottom: 56px !important;
+
+}
+.container2{
+	position: relative;
+	top: 142px;
+    left: 138px;
+	margin-top: 60px;
+	max-width: 92%;
+}
+
+.description2{
+    margin:30px;
+    font-size: 26px;
+    font-family: 'Patrick Hand', cursive;
+}
+.description1{
+    margin:30px;
+    font-size: 20px;
+    font-family: 'Patrick Hand', cursive;
+}
+.description{
+    text-align: center;
+    /* margin-left: 87px; */
+    margin-top: 8px;
+    font-size: 48px;
+    font-family: 'Patrick Hand', cursive;
+}
+.openForm{
+    bottom: 28px;
+    position: relative;
+    float: right;
+    margin-right: 71px;
+    outline:none;
+}
+.link{
+    font-family: 'Patrick Hand', cursive;
+    text-decoration: none;
+    color:blue;
+}
+.link:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color:red;
+
+}
+
+td span {
+    font-size: 19px;
+}
+
+.genreValue{
+    display: none;
+}
+.addlink{
+   font-size: 10px;
+   float:right;
+   cursor: pointer;
+}
+
+.formButtons{
+    margin-top: 12px;
+    float: right;
+    margin-left: 22px;
+    font-size: 20px;
+}
+
+.delete{
+    position: relative;
+    left: calc(100% - 28px);
+    top: -27px;
+    outline: none;
+    z-index: 1000;
+}
+
+
+@media screen and (max-width: 800px) {
+
+}
