@@ -20,7 +20,6 @@ export class BaseService {
 
   getTopic(id)
   {
-    localStorage.setItem('currentGenreId',id);
     return this.http.get<{ message:string , topics:{} }>('http://localhost:8000/catalog/topic/create',{params:{'id':id  }});
   }
 
@@ -36,7 +35,7 @@ export class BaseService {
 
   postSubTopic(data,id1)
   {
-    this.currentGenreId = localStorage.getItem('currentGenreId');
+    this.currentGenreId = localStorage.getItem('currentId');
     return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/subtopic/create/'+this.currentGenreId+'/'+id1,data);
   }
 }
