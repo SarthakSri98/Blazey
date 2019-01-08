@@ -10,11 +10,17 @@ router.get('/genre/create',genreController.getGenre);
 
 router.post('/genre/create',genreController.postGenre);
 
+router.delete('/genre/delete/:idG' , genreController.deleteGenre);
+
 router.get('/topic/create',topicController.getTopic);
 
 router.post('/topic/create/:id',topicController.postTopic);
 
+router.delete('/topic/delete/:idT',topicController.deleteTopic);
+
 router.get('/subtopic/create',subTopicController.getSubTopic);
 
 router.post('/subtopic/create/:id/:idA',subTopicController.postSubTopic);
+
+router.delete('/subtopic/delete/:idS',subTopicController.deleteSubTopic);
 module.exports = router;

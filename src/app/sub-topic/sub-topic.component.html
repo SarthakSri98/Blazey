@@ -73,7 +73,7 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
       <span (click)="addItem()" class="addLink" style="font-size: 13px;float:right;cursor: pointer;"><i class="fas fa-plus"
           style="font-size: 10px;"></i> Add more Links</span>
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Description" rows="4" formControlName="content" required></textarea>
+        <textarea matInput placeholder="Description" rows="4" formControlName="content"></textarea>
       </mat-form-field>
     <button class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</button>
     <button class="formButtons" type="submit" mat-raised-button>Add</button>

@@ -37,5 +37,14 @@ exports.putGenre = function(req,res,next){
 
 
 exports.deleteGenre = function(req,res,next){
-    
+       
+       Genre.deleteOne({ _id:req.params.idG ,  }).then(result=>{
+           console.log(result);
+       });
+       res.status(200).json({
+           message:'genre deleted succesfully'
+       }).catch(err=>{
+           message:"There was some error"
+       })
+
 }

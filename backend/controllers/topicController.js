@@ -6,7 +6,7 @@ exports.getTopic = function(req,res,next){
     console.log('id from the url',mongoose.Types.ObjectId(req.query.id));
     async.parallel({
         genre : (cb)=> Genre.findById(mongoose.Types.ObjectId(req.query.id)).exec(cb),
-        topics: (cb)=> Topic.find({'genre':mongoose.Types.ObjectId(req.query.id)}).populate('genre').populate('subTopic').exec(cb)
+        topics: (cb)=> Topic.find({'genre':mongoose.Types.ObjectId(req.query.id)}).populate('genre').populate('subTopics').exec(cb)
   },(err,result)=>{
       console.log(result);
       if (err) { return next(err); }
@@ -65,4 +65,12 @@ exports.putTopic = function(req,res,next){
 
 exports.deleteTopic = function(req,res,next){
     
+    Topic.deleteOne({ _id:req.params.idT }).then(results=>{
+        console.log(results);
+    })
+    res.status(200).json({
+        message:"Topic deleted successfully",
+    }).catch(err=>{
+        message:"Some error"
+    })
 }

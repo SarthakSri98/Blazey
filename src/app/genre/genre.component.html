@@ -1,8 +1,7 @@
-
 <h1 style=" font-family: 'Patrick Hand', cursive;
 text-align: center;">GENRES</h1>
 
-<form class="example-form center1" >
+<form class="example-form center1">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Search" class="search">
   </mat-form-field>
@@ -11,37 +10,21 @@ text-align: center;">GENRES</h1>
 
 <p class="description" *ngIf="genreArray.length < 1">Nothing to show dude!</p>
 <div class="container2" [@fadeIn]="genreArray.length" *ngIf="genreArray.length > 0">
-<div class="card" *ngFor="let genre of genreArray;let i = index" (click)="openTopic(i)" >
-    <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
-  <div class="description"><span>{{ genre.genreName }} </span></div>
-</div></div>
-
-
-
-
-<ng-template #openModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-      <mat-toolbar>
-          <span class="title center2">{{ title }}</span>
-    </mat-toolbar>
-      </div>
-  <div class="modal-body">
-      <div class="description"><span>{{ description }}</span></div>
-    </div>
-
-</ng-template>
+  <div class="card" *ngFor="let genre of genreArray;let i = index" (click)="openTopic(i)">
+    <button *ngIf="genre.topics.length<1" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+    <div class="description"><span>{{ genre.genreName }} </span></div>
+  </div>
+</div>
 
 <ng-template #openForm let-c="close" let-d="dismiss">
-    <mat-toolbar>
-        <span class="title center2">Add new Term</span>
+  <mat-toolbar>
+    <span class="title center2">Add new Term</span>
   </mat-toolbar><br><br>
-    <form class="example-form center3" [formGroup]="addForm" (ngSubmit)="add()" >
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Title" formControlName="genreName" required>
-        </mat-form-field>
-        <button class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</button>
-      <button class="formButtons" type="submit"  mat-raised-button>Add</button>
-      </form>
-      
-
-  </ng-template>
+  <form class="example-form center3" [formGroup]="addForm" (ngSubmit)="add()">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Title" formControlName="genreName" required>
+    </mat-form-field>
+    <span class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</span>
+    <button class="formButtons" type="submit" mat-raised-button>Add</button>
+  </form>
+</ng-template>

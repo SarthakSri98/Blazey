@@ -123,13 +123,14 @@ export class GenreComponent implements OnInit {
     this.Cross_click();
   }
 
-  //  delete(index)
-  //  {
-  //    this._baseService.deleteGenre(this.genreArray[index]._id).subscribe(result=>{
-  //      console.log(result);
-  //    })
-  //    this.genreArray.splice(index,1);
-  //    console.log('deleted',index);
-  //  }
+   delete(index)
+   {
+    console.log(this.genreArray[index]._id)
+     this._baseService.deleteGenre(this.genreArray[index]._id).subscribe(result=>{
+       console.log(result);
+     })
+     this.genreArray.splice(index,1);
+     console.log('deleted',index);
+   }
 
 }

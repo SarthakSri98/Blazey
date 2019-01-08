@@ -64,3 +64,21 @@ exports.postSubTopic = function(req,res)
      })    
 
 }
+
+exports.deleteSubTopic = function(req,res,next)
+{
+     SubTopic.deleteOne({ _id:req.params.idS }).then(result=>{
+         console.log(result);
+     })
+
+     res.status(200).json({
+         message:"SubTopic deleted successfully",
+
+     }).catch(err=>{
+         message:"There has been some error"
+     })
+
+
+
+
+}

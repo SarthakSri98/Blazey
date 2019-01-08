@@ -18,6 +18,11 @@ export class BaseService {
     return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/genre/create',data);
   }
 
+  deleteGenre(id)
+  {
+    return this.http.delete<{ message:string }>('http://localhost:8000/catalog/genre/delete/'+id);
+  }
+
   getTopic(id)
   {
     return this.http.get<{ message:string , topics:{} , genre:string }>('http://localhost:8000/catalog/topic/create',{params:{'id':id  }});
@@ -26,6 +31,11 @@ export class BaseService {
   postTopic(data,id)
   {
     return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create/'+id,data);
+  }
+
+  deleteTopic(id)
+  {
+    return this.http.delete<{ message:string }>('http://localhost:8000/catalog/topic/delete/'+id);
   }
 
   getSubTopic(id1)
@@ -37,5 +47,10 @@ export class BaseService {
   {
     this.currentGenreId = localStorage.getItem('currentId');
     return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/subtopic/create/'+this.currentGenreId+'/'+id1,data);
+  }
+
+  deleteSubTopic(id)
+  {
+    return this.http.delete<{ message:string }>('http://localhost:8000/catalog/subtopic/delete/'+id);
   }
 }

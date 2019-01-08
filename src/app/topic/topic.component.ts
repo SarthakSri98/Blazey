@@ -130,14 +130,15 @@ addNew(content) {
   goToSubTopic(id){
      this.route.navigate(['genre/topic/'+this.id+'/subtopic/'+id])
   }
-  //  delete(index)
-  //  {
-  //    this._baseService.deleteTopic(this.topicArray[index]._id).subscribe(result=>{
-  //      console.log(result);
-  //    })
-  //    this.topicArray.splice(index,1);
-  //    console.log('deleted',index);
-  //  }
+
+   delete(index)
+   {
+     this._baseService.deleteTopic(this.topicArray[index]._id).subscribe(result=>{
+       console.log(result);
+     })
+     this.topicArray.splice(index,1);
+     console.log('deleted',index);
+   }
 
 
 }

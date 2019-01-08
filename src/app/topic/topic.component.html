@@ -15,18 +15,37 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
 <div class="container2" [@fadeIn]="topicArray.length">
   <div class="card" *ngFor="let topic of topicArray;let i = index">
     <div *ngIf="!topic.isSubTopic" (click)="open(openModal,i)">
-      <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+      <button *ngIf="topic.subTopics.length<1" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
       <mat-toolbar color="accent" class="toolbar">
         <span class="title center">{{ i+1 }}. {{ topic.topicName }}</span>
       </mat-toolbar>
-      <div class="description1"><span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content.length>140"
-            style="color:red"> ... Read more </p> </span></div>
+      <div class="description1">
+         
+        <div *ngIf="topic.content.length > 0" >
+        <div *ngFor="let linkData of topic.linkData;let i=index">
+
+          <table>
+              <tr>
+                <td><span>{{i+1}}.</span></td>
+                <td><a target="_blank" [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption
+                    }}</a>
+                  <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
+              </tr>
+            </table>
+        </div>  
+      </div>
+        <span>
+          {{ topic.content.substr(0,140) }} 
+          <p *ngIf="topic.content.length>140" style="color:red"> ... Read more</p> 
+        </span>
+      </div>
     </div>
     <div *ngIf="topic.isSubTopic" (click)="goToSubTopic(topic._id)">
-        <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
-        <div class="description"><span>{{ topic.topicName }} </span></div>
+      <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+      <div class="description"><span>{{ topic.topicName }} </span></div>
+    </div>
   </div>
-</div></div>
+</div>
 
 
 
@@ -39,13 +58,14 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
   </div><br>
   <p style="text-align: center;" *ngIf="currentOpened.linkData.length>-1">Important Links : </p><br>
   <div class="modal-body" *ngFor="let linkData of currentOpened.linkData;let i=index">
-      
+
     <table *ngIf="currentOpened.linkData.length>-1">
       <tr>
-      <td><span>{{i+1}}.</span></td>
-      <td><a target="_blank" [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
-      <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
-    </tr>
+        <td><span>{{i+1}}.</span></td>
+        <td><a target="_blank" [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption
+            }}</a>
+          <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
+      </tr>
     </table>
   </div><br>
   <p style="text-align: center;">Description</p>
@@ -63,7 +83,6 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Topic" formControlName="topicName" required>
     </mat-form-field>
-    <input matInput placeholder="Topic" class="genreValue" formControlName="genre" required>
 
     <mat-form-field class="example-full-width">
       <mat-select #isSt matInput [value]="true" placeholder="Will there be any subtopic" formControlName="isSubTopic">

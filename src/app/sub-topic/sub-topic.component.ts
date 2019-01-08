@@ -119,14 +119,14 @@ addNew(content) {
     this.Cross_click();
   }
 
-  //  delete(index)
-  //  {
-  //    this._baseService.deleteTopic(this.subTopicArray[index]._id).subscribe(result=>{
-  //      console.log(result);
-  //    })
-  //    this.subTopicArray.splice(index,1);
-  //    console.log('deleted',index);
-  //  }
+   delete(index)
+   {
+     this._baseService.deleteSubTopic(this.subTopicArray[index]._id).subscribe(result=>{
+       console.log(result);
+     })
+     this.subTopicArray.splice(index,1);
+     console.log('deleted',index);
+   }
 
 
 }
