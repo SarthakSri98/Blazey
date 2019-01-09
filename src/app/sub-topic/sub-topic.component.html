@@ -19,7 +19,22 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
       <mat-toolbar color="accent" class="toolbar">
         <span class="title center">{{ i+1 }}. {{ topic.subTopic }}</span>
       </mat-toolbar>
-      <div class="description1"><span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content.length>140"
+        
+      <div class="description1">
+        <div *ngIf="topic.content.length <= 0" >
+            <div *ngFor="let linkData of topic.linkData;let i=index">
+  
+                <table>
+                    <tr>
+                      <td><span>{{i+1}}.</span></td>
+                      <td><a target="_blank" [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption
+                          }}</a>
+                        <a [href]="linkData.link" *ngIf="!linkData.linkCaption" class="link">{{ linkData.link }}</a></td>
+                    </tr>
+                  </table>
+              </div>  
+            </div>
+        <span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content.length>140"
             style="color:red"> ... Read more </p> </span></div>
 </div></div>
 
@@ -56,7 +71,7 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
   </mat-toolbar><br><br>
   <form class="example-form center3" [formGroup]="subTopicForm" (ngSubmit)="add()">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Topic" formControlName="subTopic" required>
+      <input matInput placeholder="Topic" formControlName="subTopic">
     </mat-form-field>
     <div formArrayName="linkData"  *ngFor="let item of subTopicForm.get('linkData').controls; let i = index;">
         <div [formGroupName]="i">

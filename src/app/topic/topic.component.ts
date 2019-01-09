@@ -64,6 +64,8 @@ export class TopicComponent implements OnInit {
       if(res.topics)
       this.topicArray = res.topics;
       console.log('res', res.topics);
+      console.log(res.topics[1].content.length)
+
     })
   }
 

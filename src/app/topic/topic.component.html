@@ -15,15 +15,15 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
 <div class="container2" [@fadeIn]="topicArray.length">
   <div class="card" *ngFor="let topic of topicArray;let i = index">
     <div *ngIf="!topic.isSubTopic" (click)="open(openModal,i)">
-      <button *ngIf="topic.subTopics.length<1" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+
+      <button *ngIf="topic.subTopics.length<=0" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+      
       <mat-toolbar color="accent" class="toolbar">
         <span class="title center">{{ i+1 }}. {{ topic.topicName }}</span>
       </mat-toolbar>
       <div class="description1">
-         
-        <div *ngIf="topic.content.length > 0" >
+        <div *ngIf="topic.content.length <= 0" >
         <div *ngFor="let linkData of topic.linkData;let i=index">
-
           <table>
               <tr>
                 <td><span>{{i+1}}.</span></td>

@@ -10,7 +10,7 @@ const topicSchema = new Schema({
    subTopics  : [{ type: Schema.Types.ObjectId , ref:'SubTopic'  }],
    isSubTopic : { type : Boolean },
    linkData : [{ link:String , linkCaption : String }],
-   content : { type: String , max:3000 }
+   content : { type: String , max:3000  , min:0}
 });
 
 module.exports = mongoose.model('Topic',topicSchema);

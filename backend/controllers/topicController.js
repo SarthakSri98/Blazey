@@ -6,7 +6,7 @@ exports.getTopic = function(req,res,next){
     console.log('id from the url',mongoose.Types.ObjectId(req.query.id));
     async.parallel({
         genre : (cb)=> Genre.findById(mongoose.Types.ObjectId(req.query.id)).exec(cb),
-        topics: (cb)=> Topic.find({'genre':mongoose.Types.ObjectId(req.query.id)}).populate('genre').populate('subTopics').exec(cb)
+        topics: (cb)=> Topic.find({'genre':mongoose.Types.ObjectId(req.query.id)}).populate('genre').populate('subTopic').exec(cb)
   },(err,result)=>{
       console.log(result);
       if (err) { return next(err); }
