@@ -13,7 +13,6 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
 </form>
 <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
-<p class="description" *ngIf="topicArray.length < 1">Nothing to show dude!</p>
 <div class="container2" [@fadeIn]="topicArray.length">
   <div class="card" *ngFor="let topic of topicArray;let i = index">
     <div *ngIf="!topic.isSubTopic" (click)="open(openModal,i)">

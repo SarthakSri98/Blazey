@@ -62,8 +62,8 @@
 .container2{
 	position: relative;
 	top: 142px;
-    left: 138px;
-	margin-top: 60px;
+    left: 132px;
+    	margin-top: 60px;
 	max-width: 92%;
 }
 
@@ -141,5 +141,36 @@ td span {
 
 
 @media screen and (max-width: 800px) {
-
+    .center1{
+        left: 28%;
+            }
+    .example-form{
+        width:70%;
+    } 
+    .openForm{
+        margin-right: 16px;
+    }
+    .description{
+        font-size: 30px;
+    }
+    .card{
+        min-height: 330px;
+        width: 346px;
+        border-radius: 14px;
+        margin-left: -74px;
+            }
+    .loader{
+                transform: scale(1);
+                position: relative;
+                margin-left: 20%;
+                margin-top: 30%;
+            }
+      h2{
+        font-size: 22px;
+        letter-spacing: 3px;
+          }   
+      h1{
+        font-size: 40px;
+        letter-spacing: 3px;
+      }   
 }
