@@ -156,10 +156,10 @@ td span {
         font-size: 30px;
     }
     .card{
-        min-height: 330px;
-        width: 346px;
+        min-height: 277px;
+        width: 294px;
         border-radius: 14px;
-        margin-left: -74px;
+        margin-left: -99px;
             }
     .loader{
                 transform: scale(1);
@@ -174,5 +174,8 @@ td span {
       h1{
         font-size: 40px;
         letter-spacing: 3px;
-      }       
+      }    
+      container2{
+        max-width: 0%;
+      }   
 }

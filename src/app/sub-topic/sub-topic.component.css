@@ -145,8 +145,7 @@ td span {
         left: 28%;
             }
     .example-form{
-        width:70%;
-    } 
+        width: 50%;    } 
     .openForm{
         margin-right: 16px;
     }
@@ -154,10 +153,10 @@ td span {
         font-size: 30px;
     }
     .card{
-        min-height: 330px;
-        width: 346px;
+        min-height: 277px;
+        width: 294px;
         border-radius: 14px;
-        margin-left: -74px;
+        margin-left: -99px;
             }
     .loader{
                 transform: scale(1);
@@ -168,9 +167,15 @@ td span {
       h2{
         font-size: 22px;
         letter-spacing: 3px;
+        position: relative;
+        left: 20px;
+    
           }   
       h1{
         font-size: 40px;
         letter-spacing: 3px;
+        position: relative;
+        left: 20px;
+    
       }   
 }
