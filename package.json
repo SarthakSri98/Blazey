@@ -32,7 +32,8 @@
     "less": "^3.9.0",
     "mongoose": "^5.4.1",
     "rxjs": "^6.0.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "express":"*"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",
