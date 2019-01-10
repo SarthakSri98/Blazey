@@ -12,12 +12,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "^6.1.5",
-    "@angular/compiler-cli": "^6.1.10",
     "@angular/animations": "^6.1.0",
     "@angular/cdk": "~7.2.0",
+    "@angular/cli": "^6.1.5",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
+    "@angular/compiler-cli": "^6.1.10",
     "@angular/core": "^6.1.0",
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",
@@ -28,15 +28,15 @@
     "async": "^2.6.1",
     "body-parser": "^1.18.3",
     "core-js": "^2.5.4",
+    "express": "^4.16.4",
     "hammerjs": "^2.0.8",
     "less": "^3.9.0",
     "mongoose": "^5.4.1",
     "rxjs": "^6.0.0",
-    "zone.js": "~0.8.26",
-    "express": "^4.16.2"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.7.0",
+    "@angular-devkit/build-angular": "^0.7.5",
     "@angular/language-service": "^6.1.0",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
