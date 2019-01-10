@@ -10,47 +10,47 @@ export class BaseService {
   currentGenreId : string;
   getGenre()
   {
-    return this.http.get<{ message:string , data:{} }>('http://localhost:8000/catalog/genre/create');
+    return this.http.get<{ message:string , data:{} }>('catalog/genre/create');
   }
 
   postGenre(data)
   {
-    return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/genre/create',data);
+    return this.http.post<{ message:string , data:{} }>('catalog/genre/create',data);
   }
 
   deleteGenre(id)
   {
-    return this.http.delete<{ message:string }>('http://localhost:8000/catalog/genre/delete/'+id);
+    return this.http.delete<{ message:string }>('catalog/genre/delete/'+id);
   }
 
   getTopic(id)
   {
-    return this.http.get<{ message:string , topics:{} , genre:string }>('http://localhost:8000/catalog/topic/create',{params:{'id':id  }});
+    return this.http.get<{ message:string , topics:{} , genre:string }>('catalog/topic/create',{params:{'id':id  }});
   }
 
   postTopic(data,id)
   {
-    return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/topic/create/'+id,data);
+    return this.http.post<{ message:string , data:{} }>('catalog/topic/create/'+id,data);
   }
 
   deleteTopic(id)
   {
-    return this.http.delete<{ message:string }>('http://localhost:8000/catalog/topic/delete/'+id);
+    return this.http.delete<{ message:string }>('catalog/topic/delete/'+id);
   }
 
   getSubTopic(id1)
   {
-    return this.http.get<{ message:string , subtopics:{} , topic:string }>('http://localhost:8000/catalog/subtopic/create',{params:{'id1':id1  }});
+    return this.http.get<{ message:string , subtopics:{} , topic:string }>('catalog/subtopic/create',{params:{'id1':id1  }});
   }
 
   postSubTopic(data,id1)
   {
     this.currentGenreId = localStorage.getItem('currentId');
-    return this.http.post<{ message:string , data:{} }>('http://localhost:8000/catalog/subtopic/create/'+this.currentGenreId+'/'+id1,data);
+    return this.http.post<{ message:string , data:{} }>('catalog/subtopic/create/'+this.currentGenreId+'/'+id1,data);
   }
 
   deleteSubTopic(id)
   {
-    return this.http.delete<{ message:string }>('http://localhost:8000/catalog/subtopic/delete/'+id);
+    return this.http.delete<{ message:string }>('catalog/subtopic/delete/'+id);
   }
 }
