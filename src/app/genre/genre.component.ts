@@ -33,6 +33,8 @@ import {
   Route,
   Router
 } from '@angular/router';
+import {MatSnackBar} from '@angular/material';
+
 @Component({
   selector: 'app-genre',
   templateUrl: './genre.component.html',
@@ -70,11 +72,13 @@ export class GenreComponent implements OnInit {
   height = '500px';
   width = '600px';
   height1 = '600px';
-  constructor(private modalService: MatDialog, private _baseService: BaseService, private router: Router) {}
+  constructor(private modalService: MatDialog, private _baseService: BaseService,
+     private router: Router,public snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.getGenres();
   }
+
 
 
   getGenres() {
@@ -115,7 +119,10 @@ export class GenreComponent implements OnInit {
   add() {
     this._baseService.postGenre(this.addForm.value).subscribe(data => {
       console.log('post data is :' + data)
-    });
+      this.snackBar.open('The new Genre has been created!', '', {
+        duration: 3000
+      });  
+      });
     console.log(this.addForm.value);
     this.getGenres();
     this.addForm.reset();
@@ -128,6 +135,9 @@ export class GenreComponent implements OnInit {
     console.log(this.genreArray[index]._id)
      this._baseService.deleteGenre(this.genreArray[index]._id).subscribe(result=>{
        console.log(result);
+       this.snackBar.open('The Genre has been deleted!', '', {
+        duration: 3000
+      }); 
      })
      this.genreArray.splice(index,1);
      console.log('deleted',index);

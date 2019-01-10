@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog,MatDialogConfig,MAT_DIALOG_DATA,MatTooltip } from '@angular/material/';
+import { MatDialog,MatDialogConfig,MAT_DIALOG_DATA,MatTooltip, MatSnackBar } from '@angular/material/';
 import { transition,trigger,style,animate,state,stagger,query, keyframes } from '@angular/animations';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { map } from 'rxjs/operators'
@@ -38,7 +38,8 @@ export class SubTopicComponent implements OnInit {
   subTopicForm : FormGroup;
   linkData : FormArray
 
-  constructor(private modalService: MatDialog , private _baseService : BaseService, private router:ActivatedRoute, private formBuilder: FormBuilder, private route : Router) { }
+  constructor(private modalService: MatDialog , private _baseService : BaseService,
+     private router:ActivatedRoute, private formBuilder: FormBuilder, private route : Router, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
 
@@ -110,7 +111,10 @@ addNew(content) {
   
   add() {
     this._baseService.postSubTopic(this.subTopicForm.value,this.id).subscribe(data => {
-      console.log('post data is :' + data)
+      console.log('post data is :' + data);
+      this.snackBar.open('The new sub-topic has been created!', '', {
+        duration: 3000
+      }); 
     });
     console.log(this.subTopicForm.value);
    this.getSubTopics(this.id);
@@ -123,6 +127,9 @@ addNew(content) {
    {
      this._baseService.deleteSubTopic(this.subTopicArray[index]._id).subscribe(result=>{
        console.log(result);
+       this.snackBar.open('The sub-topic has been deleted!', '', {
+        duration: 3000
+      }); 
      })
      this.subTopicArray.splice(index,1);
      console.log('deleted',index);

@@ -14,7 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TopicComponent } from './topic/topic.component';
-import { MatSelectModule, MatOptionModule } from '@angular/material';
+import { MatSelectModule, MatOptionModule, MatSnackBarModule } from '@angular/material';
 import { SubTopicComponent } from './sub-topic/sub-topic.component';
 
 var route:Routes = [
@@ -37,7 +37,7 @@ var route:Routes = [
   ],
   imports: [
     BrowserModule,RouterModule.forRoot(route), BrowserAnimationsModule,
-    MatToolbarModule,MatInputModule,MatDialogModule,MatButtonModule,ReactiveFormsModule,FormsModule,
+    MatToolbarModule,MatInputModule,MatDialogModule,MatButtonModule,MatSnackBarModule, ReactiveFormsModule,FormsModule,
     HttpClientModule,MatSelectModule,MatOptionModule,HttpClientModule
   ],
   providers: [],

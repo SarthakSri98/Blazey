@@ -58,10 +58,10 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
       <span class="title center2">{{ currentOpened.topicName }}</span>
     </mat-toolbar>
   </div><br>
-  <p style="text-align: center;" *ngIf="currentOpened.linkData.length>-1">Important Links : </p><br>
+  <p style="text-align: center;" *ngIf="currentOpened.linkData.length>0">Important Links : </p><br>
   <div class="modal-body" *ngFor="let linkData of currentOpened.linkData;let i=index">
 
-    <table *ngIf="currentOpened.linkData.length>-1">
+    <table>
       <tr>
         <td><span>{{i+1}}.</span></td>
         <td><a target="_blank" [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption
@@ -70,7 +70,7 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
       </tr>
     </table>
   </div><br>
-  <p style="text-align: center;">Description</p>
+  <p *ngIf="currentOpened.content" style="text-align: center;">Description</p>
   <div class="modal-body">
     <div class="description2"><span>{{ currentOpened.content }}</span></div>
   </div>
