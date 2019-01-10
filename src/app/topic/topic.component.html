@@ -1,3 +1,5 @@
+<img class="loader" *ngIf="!currentGenre" src="https://i.gifer.com/origin/7e/7ee3cfe72db589bdb95ad0f9edbaf6d4_w200.webp">
+<div *ngIf="currentGenre.length>0">
 <h1 style=" font-family: 'Patrick Hand', cursive;
 text-align: center;">TOPICS</h1>
 
@@ -47,7 +49,7 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
   </div>
 </div>
 
-
+</div>
 
 
 <ng-template #openModal let-c="close" let-d="dismiss">

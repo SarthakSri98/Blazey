@@ -1,3 +1,7 @@
+
+<img class="loader" *ngIf="!(genreArray.length>0)" src="https://i.gifer.com/origin/7e/7ee3cfe72db589bdb95ad0f9edbaf6d4_w200.webp">
+<div *ngIf="genreArray.length>0">
+
 <h1 style=" font-family: 'Patrick Hand', cursive;
 text-align: center;">GENRES</h1>
 
@@ -15,7 +19,7 @@ text-align: center;">GENRES</h1>
     <div class="description"><span>{{ genre.genreName }} </span></div>
   </div>
 </div>
-
+</div>
 <ng-template #openForm let-c="close" let-d="dismiss">
   <mat-toolbar>
     <span class="title center2">Add new Term</span>
