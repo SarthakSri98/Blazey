@@ -140,7 +140,7 @@ addNew(content) {
 
    delete(index)
    {
-     this._baseService.deleteTopic(this.topicArray[index]._id).subscribe(result=>{
+     this._baseService.deleteTopic(this.topicArray[index]._id,this.id).subscribe(result=>{
        console.log(result);
        this.snackBar.open('The topic has been deleted!', '', {
         duration: 3000

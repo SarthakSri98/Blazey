@@ -16,7 +16,7 @@ router.get('/topic/create',topicController.getTopic);
 
 router.post('/topic/create/:id',topicController.postTopic);
 
-router.delete('/topic/delete/:idT',topicController.deleteTopic);
+router.delete('/topic/delete/:idG/:idT',topicController.deleteTopic);
 
 router.get('/subtopic/create',subTopicController.getSubTopic);
 

@@ -33,9 +33,9 @@ export class BaseService {
     return this.http.post<{ message:string , data:{} }>('catalog/topic/create/'+id,data);
   }
 
-  deleteTopic(id)
+  deleteTopic(idT,idG)
   {
-    return this.http.delete<{ message:string }>('catalog/topic/delete/'+id);
+    return this.http.delete<{ message:string }>('catalog/topic/delete/'+idG+'/'+idT);
   }
 
   getSubTopic(id1)
