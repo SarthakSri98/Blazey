@@ -123,8 +123,7 @@ mat-toolbar{
         min-height: 277px;
         width: 294px;
         border-radius: 14px;
-        margin-left: -99px;
-            }
+        margin-left: -90px;            }
     .loader{
                 transform: scale(1);
                 position: relative;

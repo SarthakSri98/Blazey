@@ -16,9 +16,10 @@ text-align: center;">GENRES</h1>
 <div class="container2" [@fadeIn]="genreArray.length" *ngIf="genreArray.length > 0">
   <div class="card" *ngFor="let genre of genreArray;let i = index" (click)="openTopic(i)">
     <button *ngIf="genre.topics.length<1" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
-    <div class="description"><span>{{ genre.genreName }} </span><br>
+    <div class="description"><span>{{ genre.genreName }} </span>
+    </div><br><br>
     <span>Open to see topics inside</span>
-    </div>
+
   </div>
 </div>
 </div>
