@@ -144,10 +144,11 @@ td span {
 
 @media screen and (max-width: 800px) {
     .center1{
-        left: 28%;
-            }
+
+        left: 20%;
+                }
     .example-form{
-        width:70%;
+        width:50%;
     } 
     .openForm{
         margin-right: 16px;
