@@ -43,7 +43,10 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
     </div>
     <div *ngIf="topic.isSubTopic" (click)="goToSubTopic(topic._id)">
       <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
-      <div class="description"><span>{{ topic.topicName }} </span></div>
+      <div class="description"><span>{{ topic.topicName }} </span>
+        <br>
+        <span>Open to see sub-topics inside</span>
+      </div>
     </div>
   </div>
 </div>

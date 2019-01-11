@@ -112,15 +112,16 @@ addNew(content) {
   add() {
     this._baseService.postSubTopic(this.subTopicForm.value,this.id).subscribe(data => {
       console.log('post data is :' + data);
-      this.snackBar.open('The new sub-topic has been created!', '', {
-        duration: 3000
-      }); 
-    });
+     });
     console.log(this.subTopicForm.value);
    this.getSubTopics(this.id);
     this.subTopicForm.reset();
     //this.genreArray.push(this.subTopicForm.value);
     this.Cross_click();
+    this.snackBar.open('The new sub-topic has been created!', '', {
+      duration: 3000
+    }); 
+  
   }
 
    delete(index)

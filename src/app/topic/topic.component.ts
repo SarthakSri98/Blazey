@@ -117,15 +117,16 @@ addNew(content) {
   add() {
     this._baseService.postTopic(this.topicForm.value,this.id).subscribe(data => {
       console.log('post data is :' + data);
-      this.snackBar.open('The new Topic has been created!', '', {
-        duration: 3000
-      }); 
+      
     });
     console.log(this.topicForm.value);
    this.getTopics(this.id);
     this.topicForm.reset();
     //this.genreArray.push(this.topicForm.value);
     this.Cross_click();
+    this.snackBar.open('The new Topic has been created!', '', {
+      duration: 3000
+    }); 
   }
 
   addLink()
