@@ -106,10 +106,40 @@ mat-toolbar{
 
 
 @media screen and (max-width: 800px) {
-    .container2{
-        left: -4%;
+    .center1{
+
+        left: 20%;
+                }
+    .example-form{
+        width:50%;
+    } 
+    .openForm{
+        margin-right: 16px;
     }
-    .search{
-        width:30px;
+    .description{
+        font-size: 30px;
     }
+    .card{
+        min-height: 277px;
+        width: 294px;
+        border-radius: 14px;
+        margin-left: -99px;
+            }
+    .loader{
+                transform: scale(1);
+                position: relative;
+                margin-left: 20%;
+                margin-top: 30%;
+            }
+      h2{
+        font-size: 22px;
+        letter-spacing: 3px;
+          }   
+      h1{
+        font-size: 40px;
+        letter-spacing: 3px;
+      }    
+      container2{
+        max-width: 0%;
+      }
 }
