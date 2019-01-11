@@ -78,13 +78,7 @@ exports.deleteTopic = function(req,res,next){
       
     Genre.findOneAndUpdate({ _id: (req.params.idG) },
     { $pull: { 
-        'topics': { $oid : req.params.idT}
+        'topics': mongoose.Schema.ObjectId(req.params.idT)
       } 
-    },function (error, success) {
-        if (error) {
-            console.log('err',error);
-        } else {
-            console.log('success',success);
-        }
-    })
-}
+    },false,true
+    )}
