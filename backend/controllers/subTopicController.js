@@ -67,6 +67,23 @@ exports.postSubTopic = function(req,res)
 
 exports.deleteSubTopic = function(req,res,next)
 {
+
+    Topic.findOneAndUpdate(
+        { _id:req.params.idS },
+        { 
+         $push: 
+         {
+             subTopics : req.params.idS
+         }
+        },
+        function(err,success)
+        {
+             if(err) console.log(err);
+             else
+             console.log(success);
+         })    
+        
+         
      SubTopic.deleteOne({ _id:req.params.idS }).then(result=>{
          console.log(result);
      })

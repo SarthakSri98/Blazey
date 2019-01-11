@@ -73,4 +73,16 @@ exports.deleteTopic = function(req,res,next){
     }).catch(err=>{
         message:"Some error"
     })
+
+    Genre.findOneAndUpdate({ _id: (req.params.idT) },
+    { $pull: { 
+        topics: req.params.idT
+      } 
+    },function (error, success) {
+        if (error) {
+            console.log('err',error);
+        } else {
+            console.log('success',success);
+        }
+    })
 }
