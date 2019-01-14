@@ -80,15 +80,15 @@ exports.deleteSubTopic = function(req,res,next)
      console.log('topicid',req.params.idT);
      console.log('subtopic id',req.params.idS);
 
-     Topic.findByIdAndUpdate({'_id': mongoose.Types.ObjectId(req.params.idT)},
+     Topic.findByIdAndUpdate({_id: mongoose.Types.ObjectId(req.params.idT)},
      { $pull:{
-         subTopics : mongoose.Types.ObjectId(req.params.idS)
-     },
+         'subTopics' : mongoose.Types.ObjectId(req.params.idS)
+     }
+    },
     function(err,success)
     {
          if(err) console.log('err',err);
          else
          console.log('success',success);
-     }   
-    })
+     })
 }
