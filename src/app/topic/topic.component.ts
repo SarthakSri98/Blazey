@@ -64,7 +64,7 @@ export class TopicComponent implements OnInit {
       console.log('res out', res);
       if(res.topics)
       this.topicArray = res.topics;
-      console.log('res', res.topics);
+      console.log('res', this.topicArray);
       console.log(res.topics[1].content.length)
 
     })
@@ -138,17 +138,19 @@ addNew(content) {
      this.route.navigate(['genre/topic/'+this.id+'/subtopic/'+id])
   }
 
-   delete(index)
-   {
-     this._baseService.deleteTopic(this.topicArray[index]._id,this.id).subscribe(result=>{
-       console.log(result);
-       this.snackBar.open('The topic has been deleted!', '', {
-        duration: 3000
-      }); 
-     })
-     this.topicArray.splice(index,1);
-     console.log('deleted',index);
-   }
+  delete(index)
+  {
+    console.log(this.id);
+    console.log(this.topicArray[index]._id);
+    this._baseService.deleteTopic(this.topicArray[index]._id,this.id).subscribe(result=>{
+      console.log(result);
+      this.snackBar.open('The topic has been deleted!', '', {
+       duration: 3000
+     }); 
+    })
+    this.topicArray.splice(index,1);
+    console.log('deleted',index);
+  }
 
 
 }

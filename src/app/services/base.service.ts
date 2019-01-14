@@ -49,8 +49,8 @@ export class BaseService {
     return this.http.post<{ message:string , data:{} }>('catalog/subtopic/create/'+this.currentGenreId+'/'+id1,data);
   }
 
-  deleteSubTopic(id)
+  deleteSubTopic(idT,idS)
   {
-    return this.http.delete<{ message:string }>('catalog/subtopic/delete/'+id);
+    return this.http.delete<{ message:string }>('catalog/subtopic/delete/'+idT+'/'+idS);
   }
 }

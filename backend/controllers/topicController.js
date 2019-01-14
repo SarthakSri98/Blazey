@@ -70,15 +70,20 @@ exports.deleteTopic = function(req,res,next){
     })
     res.status(200).json({
         message:"Topic deleted successfully",
-    }).catch(err=>{
-        message:"Some error"
-    })
+    });
 
-    
+    console.log('TOPIC id in topic delete',req.params.idT);
+    console.log('gerne id in topic delete',req.params.idG);
       
-    Genre.findOneAndUpdate({ _id: (req.params.idG) },
+    Topic.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.idG) },
     { $pull: { 
-        'topics': mongoose.Schema.ObjectId(req.params.idT)
+        'topics': mongoose.Types.ObjectId(req.params.idT)
       } 
-    },false,true
-    )}
+    },function (error, success) {
+        if (error) {
+            console.log('err',error);
+        } else {
+            console.log('success',success);
+        }
+    })
+}

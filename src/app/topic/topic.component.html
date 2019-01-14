@@ -17,7 +17,7 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
   <div class="card" *ngFor="let topic of topicArray;let i = index">
     <div *ngIf="!topic.isSubTopic" (click)="open(openModal,i)">
 
-      <button *ngIf="topic.subTopics.length<=0" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+      <button *ngIf="topic.subTopics.length<1" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
       
       <mat-toolbar color="accent" class="toolbar">
         <span class="title center">{{ i+1 }}. {{ topic.topicName }}</span>
@@ -42,7 +42,7 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
       </div>
     </div>
     <div *ngIf="topic.isSubTopic" (click)="goToSubTopic(topic._id)">
-      <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
+      <button *ngIf="topic.subTopics.length<1" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
       <div class="description"><span>{{ topic.topicName }} </span>
       </div>
       <br><br>

@@ -32,7 +32,7 @@ exports.postSubTopic = function(req,res)
 
     const subtopic = new SubTopic({
         genreName : req.params.id,
-        topicName : req.params.idA,
+        topicName : req.params.idT,
         subTopic : req.body.subTopic,
         linkData : req.body.linkData,
         content :  req.body.content
@@ -49,7 +49,7 @@ exports.postSubTopic = function(req,res)
     })
     console.log('id',req.params);
     Topic.findOneAndUpdate(
-    { _id:req.params.id },
+    { _id:req.params.idT },
     { 
      $push: 
      {
@@ -67,23 +67,6 @@ exports.postSubTopic = function(req,res)
 
 exports.deleteSubTopic = function(req,res,next)
 {
-
-    Topic.findOneAndUpdate(
-        { _id:req.params.idS },
-        { 
-         $push: 
-         {
-             subTopics : req.params.idS
-         }
-        },
-        function(err,success)
-        {
-             if(err) console.log(err);
-             else
-             console.log(success);
-         })    
-        
-         
      SubTopic.deleteOne({ _id:req.params.idS }).then(result=>{
          console.log(result);
      })
@@ -91,11 +74,21 @@ exports.deleteSubTopic = function(req,res,next)
      res.status(200).json({
          message:"SubTopic deleted successfully",
 
-     }).catch(err=>{
-         message:"There has been some error"
      })
 
 
+     console.log('topicid',req.params.idT);
+     console.log('subtopic id',req.params.idS);
 
-
+     Topic.findByIdAndUpdate({'_id': mongoose.Types.ObjectId(req.params.idT)},
+     { $pull:{
+         subTopics : mongoose.Types.ObjectId(req.params.idS)
+     },
+    function(err,success)
+    {
+         if(err) console.log('err',err);
+         else
+         console.log('success',success);
+     }   
+    })
 }

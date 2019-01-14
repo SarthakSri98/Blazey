@@ -112,21 +112,20 @@ addNew(content) {
   add() {
     this._baseService.postSubTopic(this.subTopicForm.value,this.id).subscribe(data => {
       console.log('post data is :' + data);
-     });
+      this.snackBar.open('The new sub-topic has been created!', '', {
+        duration: 3000
+      }); 
+    });
     console.log(this.subTopicForm.value);
    this.getSubTopics(this.id);
     this.subTopicForm.reset();
     //this.genreArray.push(this.subTopicForm.value);
     this.Cross_click();
-    this.snackBar.open('The new sub-topic has been created!', '', {
-      duration: 3000
-    }); 
-  
   }
 
    delete(index)
    {
-     this._baseService.deleteSubTopic(this.subTopicArray[index]._id).subscribe(result=>{
+     this._baseService.deleteSubTopic(this.id,this.subTopicArray[index]._id).subscribe(result=>{
        console.log(result);
        this.snackBar.open('The sub-topic has been deleted!', '', {
         duration: 3000

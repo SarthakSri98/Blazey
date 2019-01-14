@@ -20,7 +20,7 @@ router.delete('/topic/delete/:idG/:idT',topicController.deleteTopic);
 
 router.get('/subtopic/create',subTopicController.getSubTopic);
 
-router.post('/subtopic/create/:id/:idA',subTopicController.postSubTopic);
+router.post('/subtopic/create/:id/:idT',subTopicController.postSubTopic);
 
-router.delete('/subtopic/delete/:idS',subTopicController.deleteSubTopic);
+router.delete('/subtopic/delete/:idT/:idS',subTopicController.deleteSubTopic);
 module.exports = router;
