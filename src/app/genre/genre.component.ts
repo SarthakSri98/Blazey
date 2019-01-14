@@ -119,10 +119,10 @@ export class GenreComponent implements OnInit {
   add() {
     this._baseService.postGenre(this.addForm.value).subscribe(data => {
       console.log('post data is :' + data)
+      this.getGenres();
        
       });
     console.log(this.addForm.value);
-    this.getGenres();
     this.addForm.reset();
     //this.genreArray.push(this.addForm.value);
     this.Cross_click();

@@ -115,9 +115,9 @@ addNew(content) {
       this.snackBar.open('The new sub-topic has been created!', '', {
         duration: 3000
       }); 
+      this.getSubTopics(this.id);
     });
     console.log(this.subTopicForm.value);
-   this.getSubTopics(this.id);
     this.subTopicForm.reset();
     //this.genreArray.push(this.subTopicForm.value);
     this.Cross_click();
