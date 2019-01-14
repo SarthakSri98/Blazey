@@ -12,8 +12,8 @@ text-align: center;">GENRES</h1>
 </form>
 <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
-<p class="description" *ngIf="genreArray.length < 1">Nothing to show dude!</p>
-<div class="container2" [@fadeIn]="genreArray.length" *ngIf="genreArray.length > 0">
+<p class="description" *ngIf="genreArray">Nothing to show dude!</p>
+<div class="container2" [@fadeIn]="genreArray.length" *ngIf="genreArray">
   <div class="card" *ngFor="let genre of genreArray;let i = index" (click)="openTopic(i)">
     <button *ngIf="genre.topics.length<1" mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
     <div class="description"><span>{{ genre.genreName }} </span>

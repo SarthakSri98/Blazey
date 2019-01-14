@@ -75,7 +75,7 @@ exports.deleteTopic = function(req,res,next){
     console.log('TOPIC id in topic delete',req.params.idT);
     console.log('gerne id in topic delete',req.params.idG);
       
-    Topic.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.idG) },
+    Genre.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.params.idG) },
     { $pull: { 
         'topics': mongoose.Types.ObjectId(req.params.idT)
       } 
