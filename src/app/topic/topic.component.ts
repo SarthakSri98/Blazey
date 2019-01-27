@@ -32,7 +32,7 @@ export class TopicComponent implements OnInit {
   currentOpened={};
   currentGenre:string;
   height = '700px';
-  width= '840px;';
+  width= '840px';
   height1 = '600px';
   width1 = '600px';
   list = ['a'];
