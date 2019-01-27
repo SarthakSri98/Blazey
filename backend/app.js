@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 var catalogRouter = require('./routes/catalog');
 var indexRouter = require('./routes/index');
+var userRouter = require('./routes/user');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,8 +29,9 @@ app.use((req,res,next)=>{
 });
 
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
+app.use('/users',userRouter);
 
 app.use((req,res,next)=>{
     res.sendFile(path.join(__dirname,'angular','index.html'))

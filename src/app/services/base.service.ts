@@ -8,6 +8,12 @@ export class BaseService {
 
   constructor(private http : HttpClient) { }
   currentGenreId : string;
+
+  signup(data)
+  {
+     return this.http.post<{ message:string , result:{} }>('users/signup',data);
+  }
+
   getGenre()
   {
     return this.http.get<{ message:string , data:{} }>('catalog/genre/create');

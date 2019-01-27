@@ -2,10 +2,10 @@
 	<div class="container">
 		<h1>Welcome</h1>
 		
-		<form class="form">
-			<input type="text" placeholder="Username" readonly onfocus="this.removeAttribute('readonly')">
-			<input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly')">
-			<button type="submit" id="login-button">Signup</button>
+		<form class="form" [formGroup]="signupForm" (ngSubmit)="createUser()">
+			<input type="text" placeholder="Username" readonly onfocus="this.removeAttribute('readonly')" formControlName="email">
+			<input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly')" formControlName="password">
+			<button type="submit">Signup</button>
 		</form>
 	</div>
 	
