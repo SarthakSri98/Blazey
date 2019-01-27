@@ -6,12 +6,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BaseService {
 
+  isAuthenticated=false;
   constructor(private http : HttpClient) { }
   currentGenreId : string;
 
   signup(data)
   {
      return this.http.post<{ message:string , result:{} }>('users/signup',data);
+  }
+
+  login(data)
+  {
+      return this.http.post<{ message:string , result:{} , isAuthenticated:Boolean }>('users/login',data);
   }
 
   getGenre()

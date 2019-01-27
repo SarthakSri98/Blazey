@@ -4,7 +4,40 @@ var bcrypt = require('bcrypt');
 
 
 exports.login = function(req,res,next){
-  console.log("login");     
+
+  User.findOne({ email:req.body.email }).then(user=>{
+
+      let fetchedUser;
+
+      if(!user)
+      return res.status(401).json({
+          message:"authentication failed",
+          isAuthenticated:false
+      })
+     return bcrypt.compare(req.body.password,user.password)
+    }).then(result=>{
+       if(!result)
+       {
+        return res.status(401).json({
+            message:"authentication failed",
+            isAuthenticated:false
+
+        })
+       }
+
+       res.status(200).json({
+           result:result,
+           message:"User authenticated successfully",
+           isAuthenticated:true
+       })
+    }).catch(err=>{
+        res.status(401).json({
+            message:"Authentication failed",
+            error:err,
+            isAuthenticated:false
+        })
+    })
+  
 
 }
 
