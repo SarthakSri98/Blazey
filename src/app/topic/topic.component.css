@@ -43,8 +43,8 @@
 .card{
     height: auto;
     min-height: 350px;
-    width: 387px;
-    float: left;
+    width: 25%;
+        float: left;
     border-radius: 14px;
     margin-left: 31px;
    margin-bottom: 127px;
@@ -91,8 +91,8 @@ mat-toolbar{
     text-align: center;
     /* margin-left: 87px; */
     margin-top: 12%;
-    font-size: 48px;
-    font-family: 'Patrick Hand', cursive;
+    font-size: 2rem;
+        font-family: 'Patrick Hand', cursive;
 }
 .openForm{
     bottom: 28px;

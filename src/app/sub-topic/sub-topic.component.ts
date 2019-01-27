@@ -32,7 +32,7 @@ export class SubTopicComponent implements OnInit {
   currentOpened={};
   currentTopic:string;
   height = '700px';
-  width= '800px';
+  width= '840px;';
   height1 = '600px';
   width1 = '600px';
   subTopicForm : FormGroup;

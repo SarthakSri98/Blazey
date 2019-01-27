@@ -1,5 +1,5 @@
 <img class="loader" *ngIf="!currentTopic" src="https://i.gifer.com/origin/7e/7ee3cfe72db589bdb95ad0f9edbaf6d4_w200.webp">
-<div *ngIf="currentTopic.length>0">
+<div *ngIf="currentTopic?.length>0">
 <h1 style=" font-family: 'Patrick Hand', cursive;
 text-align: center;">SUB-TOPICs</h1>
 
@@ -14,8 +14,8 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
 </form>
 <button mat-fab color="accent" class="openForm" mat-raised-button (click)="addNew(openForm)"><i class="fas fa-plus"></i></button>
 
-<p class="description" *ngIf="subTopicArray.length < 1">Nothing to show dude!</p>
-<div class="container2" [@fadeIn]="subTopicArray.length">
+<p class="description" *ngIf="!subTopicArray">Nothing to show dude!</p>
+<div class="container2" [@fadeIn]="subTopicArray?.length">
   <div class="card" *ngFor="let topic of subTopicArray;let i = index" (click)="open(openModal,i)">
       <button mat-fab color="accent" class="delete" mat-raised-button (click)="delete(i)"><i class="fa fa-times"></i></button>
       <mat-toolbar color="accent" class="toolbar">
@@ -23,7 +23,7 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
       </mat-toolbar>
         
       <div class="description1">
-        <div *ngIf="topic.content.length <= 0" >
+        <div *ngIf="topic.content && topic.content?.length <= 0" >
             <div *ngFor="let linkData of topic.linkData;let i=index">
   
                 <table>
@@ -36,7 +36,7 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
                   </table>
               </div>  
             </div>
-        <span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content.length>140"
+        <span>{{ topic.content.substr(0,140) }} <p *ngIf="topic.content && topic.content?.length>140"
             style="color:red"> ... Read more </p> </span></div>
 </div></div>
 
@@ -46,13 +46,13 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
 <ng-template #openModal let-c="close" let-d="dismiss">
   <div class="modal-header">
     <mat-toolbar>
-      <span class="title center2">{{ currentOpened.topicName }}</span>
+      <span class="title center2">{{ currentOpened.subTopic }}</span>
     </mat-toolbar>
   </div><br>
-  <p style="text-align: center;" *ngIf="currentOpened.linkData.length>-1">Important Links : </p><br>
+  <p style="text-align: center;" *ngIf="currentOpened.linkData.linkCaption && currentOpened.linkData.linkCaption.length>0">Important Links : </p><br>
   <div class="modal-body"  *ngFor="let linkData of currentOpened.linkData;let i=index">
       
-    <table *ngIf="currentOpened.linkData.length>-1">
+    <table *ngIf="linkData.linkCaption && linkData.linkCaption.length>0">
       <tr>
       <td><span>{{i+1}}.</span></td>
       <td><a [href]="linkData.link" *ngIf="linkData.linkCaption" class="link">{{ linkData.linkCaption }}</a>
@@ -62,7 +62,7 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
   </div>
   <p style="text-align: center;">Description</p><br>
   <div class="modal-body">
-    <div class="description2"><span>{{ currentOpened.content }}</span></div>
+    <div class="description2"><span><pre>{{ currentOpened.content }}</pre></span></div>
   </div>
 
 </ng-template>
@@ -92,8 +92,8 @@ text-align: center;">IN {{ currentTopic | uppercase }}</h2>
       <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Description" rows="4" formControlName="content"></textarea>
       </mat-form-field>
-    <button class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</button>
-    <button class="formButtons" type="submit" mat-raised-button>Add</button>
+      <span class="formButtons" mat-raised-button (click)="Cross_click()">Cancel</span>
+      <button class="formButtons" type="submit" mat-raised-button>Add</button>
   </form>
 
 
