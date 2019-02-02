@@ -12,7 +12,7 @@ exports.getSubTopic = function(req,res)
          topic : cb=>Topic.findById(mongoose.Types.ObjectId(req.query.id1)).exec(cb),
          subtopic : cb=> { SubTopic.find({ 'topicName':mongoose.Types.ObjectId(req.query.id1) }).populate('genreName').populate('topicName').exec(cb) }   
      },(err,result)=>{
-         console.log(result.subtopic[0].linkData)
+        //  console.log(result.subtopic[0].linkData)
          console.log('sdvsd',result);
          if(err) console.log(err);
          else
