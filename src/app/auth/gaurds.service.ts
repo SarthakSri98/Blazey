@@ -5,7 +5,7 @@ import { BaseService } from '../services/base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class GaurdsService {
+export class GaurdsService implements CanActivate {
 
   constructor(private _base: BaseService, private _router: Router) {
   }

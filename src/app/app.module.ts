@@ -16,13 +16,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { TopicComponent } from './topic/topic.component';
 import { MatSelectModule, MatOptionModule, MatSnackBarModule } from '@angular/material';
 import { SubTopicComponent } from './sub-topic/sub-topic.component';
+import { GaurdsService } from './auth/gaurds.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 var route:Routes = [
-  { path:'signup' ,component:SignupComponent },
-  { path:'' ,component:LoginComponent },
-  { path:'genre' ,component:GenreComponent},
-  { path:'genre/topic/:id' , component:TopicComponent },
-  { path:'genre/topic/:id/subtopic/:id1', component:SubTopicComponent }
+  { path:'signup' ,component:SignupComponent, canActivate:[ GaurdsService ] },
+  { path:'' ,component:LoginComponent},
+  { path:'**', component:LoginComponent },
+  { path:'genre' ,component:GenreComponent, canActivate:[ GaurdsService ]},
+  { path:'genre/topic/:id' , component:TopicComponent, canActivate:[ GaurdsService ] },
+  { path:'genre/topic/:id/subtopic/:id1', component:SubTopicComponent, canActivate:[ GaurdsService ] }
 ]
 
 
@@ -33,14 +36,15 @@ var route:Routes = [
     SignupComponent,
     GenreComponent,
     TopicComponent,
-    SubTopicComponent
+    SubTopicComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,RouterModule.forRoot(route), BrowserAnimationsModule,
     MatToolbarModule,MatInputModule,MatDialogModule,MatButtonModule,MatSnackBarModule, ReactiveFormsModule,FormsModule,
     HttpClientModule,MatSelectModule,MatOptionModule,HttpClientModule
   ],
-  providers: [],
+  providers: [ GaurdsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
