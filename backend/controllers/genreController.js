@@ -1,17 +1,10 @@
 const async = require('async');
 const Genre = require('../models/genreModel');
+var nJwt = require('jsonwebtoken');
 
 exports.getGenre = function(req,res,next){
 
- nJwt.verify(req.body.token, 'the_good_the_bad_and_the_uchihas', function (err, token) {
 
-   if(err)
-   {
-       return res.status(400).json({
-           message : "user not authorised",
-           authorised : false
-       })
-   } 
    Genre.find().exec((err,result)=>{
     console.log(result);
        res.status(200).json({
@@ -20,14 +13,23 @@ exports.getGenre = function(req,res,next){
            authorised : true
        })
    })
-})
 }
 
 
 exports.postGenre = function(req,res,next){
-    
+    console.log("posting starts",req.body)
+    nJwt.verify(req.body.token, 'the_good_the_bad_and_the_uchihas', function (err, token) {
+
+        if(err)
+        {
+            return res.status(400).json({
+                message : "user not authorized",
+                authorised : false
+            })
+        } 
     const genre = new Genre({
-         genreName : req.body.genreName
+         genreName : req.body.genreName,
+         user : req.body.user
      });
 
      genre.save().then( createdGenre =>{
@@ -40,7 +42,7 @@ exports.postGenre = function(req,res,next){
               }
           })
      })
-
+    })
 }
 
 

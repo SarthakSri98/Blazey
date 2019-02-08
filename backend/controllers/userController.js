@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var User = require('../models/userModel');
 var bcrypt = require('bcrypt');
-var jwt = require('json-web-token');
+var jwt = require('jsonwebtoken');
 
 exports.login = function(req,res,next){
 

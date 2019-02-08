@@ -1,43 +1,10 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  MatDialog,
-  MatDialogConfig,
-  MAT_DIALOG_DATA,
-  MatTooltip
-} from '@angular/material/';
-import {
-  transition,
-  trigger,
-  style,
-  animate,
-  state,
-  stagger,
-  query,
-  keyframes
-} from '@angular/animations';
-import {
-  FormControl,
-  FormGroup,
-  FormControlName
-} from '@angular/forms'
-import {
-  map
-} from 'rxjs/operators'
-import {
-  BaseService
-} from '../services/base.service';
-import {
-  Route,
-  Router
-} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
-import {
-  applyOperation
-} from 'fast-json-patch'
-
+import { Component, OnInit } from '@angular/core';
+import {  MatDialog,  MatDialogConfig,  MAT_DIALOG_DATA,  MatTooltip} from '@angular/material/';import {  transition,  trigger,  style,  animate,  state,  stagger,  query,  keyframes} from '@angular/animations';  import {    FormControl,  FormGroup,  FormControlName} from '@angular/forms';
+import {  map} from 'rxjs/operators';
+import {  BaseService} from '../services/base.service';
+import {  Route,  Router} from '@angular/router';import {MatSnackBar} from '@angular/material';
+import {  applyOperation} from 'fast-json-patch'
+declare var require: any;
 @Component({
   selector: 'app-genre',
   templateUrl: './genre.component.html',
@@ -66,7 +33,7 @@ import {
   ]
 })
 export class GenreComponent implements OnInit {
-
+  jsonpatch = require('fast-json-patch')
   i: number;
   currentId: string;
   genreArray: any = []
@@ -87,9 +54,13 @@ export class GenreComponent implements OnInit {
   getGenres() {
     this._baseService.getGenre().subscribe((res:any) => {
       this.genreArray = res.data.filter(elem=>{
-         elem.user = localStorage.getItem('user');
+        console.log('elem',elem.user);
+        console.log('user',localStorage.getItem('user'));
+        return elem.user === localStorage.getItem('user');
       });
+      
       console.log('res', res.data);
+      console.log('gernearray',this.genreArray);
     })
   }
 
@@ -128,14 +99,21 @@ export class GenreComponent implements OnInit {
       op: "add",
       path: "/user",
       value: localStorage.getItem('user')
-    }, ];
+    },
+    {
+      op: "add",
+      path: "/token",
+      value: localStorage.getItem('token')
+    } ];
 
+    doc = this.jsonpatch.applyPatch(doc, patch).newDocument;
+
+    console.log('form value',this.addForm.value);
     this._baseService.postGenre(this.addForm.value).subscribe(data => {
       console.log('post data is :' + data)
       this.getGenres();
        
       });
-    console.log(this.addForm.value);
     this.addForm.reset();
     //this.genreArray.push(this.addForm.value);
     this.Cross_click();
