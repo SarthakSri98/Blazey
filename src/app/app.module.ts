@@ -20,12 +20,12 @@ import { GaurdsService } from './auth/gaurds.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 var route:Routes = [
-  { path:'signup' ,component:SignupComponent, canActivate:[ GaurdsService ] },
+  { path:'signup' ,component:SignupComponent },
   { path:'' ,component:LoginComponent},
-  { path:'**', component:LoginComponent },
   { path:'genre' ,component:GenreComponent, canActivate:[ GaurdsService ]},
   { path:'genre/topic/:id' , component:TopicComponent, canActivate:[ GaurdsService ] },
-  { path:'genre/topic/:id/subtopic/:id1', component:SubTopicComponent, canActivate:[ GaurdsService ] }
+  { path:'genre/topic/:id/subtopic/:id1', component:SubTopicComponent, canActivate:[ GaurdsService ] },
+  { path:'**', component:PageNotFoundComponent }
 ]
 
 

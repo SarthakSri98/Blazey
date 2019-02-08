@@ -3,6 +3,7 @@ import { Router, Route } from '@angular/router';
 import { FormControl,FormGroup,FormControlName } from '@angular/forms';
 import { BaseService } from '../services/base.service';
 import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,23 +25,20 @@ this.loginForm = new FormGroup({
 })
 
 }
-login()
-{
-   this._base.login(this.loginForm.value).subscribe(result=>{
-     console.log(result);
-    if(result.isAuthenticated)
-    {
-    localStorage.setItem('token',result.token);
-    localStorage.setItem('user',this.loginForm.value.email);
-    this._base.isAuthenticated=true;  
-    this.router.navigate(['genre']);
+login() {
+  this._base.login(this.loginForm.value).subscribe(result => {
+    console.log(result);
+    this._base.isAuthenticated = true;
+    if (result.isAuthenticated) {
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('user', this.loginForm.value.email);
+      this.router.navigate(['genre']);
+    } else {
+      console.log('not authenticated');
+      this.snackBar.open(result.message, '', {
+        duration: 3000
+      });
     }
-    else
-    {
-    this.snackBar.open(result.message, '', {
-      duration: 3000
-    }); 
-  }
   })
 }
 

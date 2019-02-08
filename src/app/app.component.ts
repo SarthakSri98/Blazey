@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from './services/base.service';
 
@@ -7,11 +7,19 @@ import { BaseService } from './services/base.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'blazey';
   
   constructor(private router:Router, private _baseService : BaseService)
   {}
+
+  ngOnInit()
+  {
+    if(localStorage.getItem('token'))
+    {
+      this._baseService.isAuthenticated = true;
+    }
+  }
 
   logout()
   {
