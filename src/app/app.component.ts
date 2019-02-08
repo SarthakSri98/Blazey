@@ -9,7 +9,7 @@ import { BaseService } from './services/base.service';
 })
 export class AppComponent implements OnInit {
   title = 'blazey';
-  
+  currentUser : string;
   constructor(private router:Router, private _baseService : BaseService)
   {}
 
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     if(localStorage.getItem('token'))
     {
       this._baseService.isAuthenticated = true;
+      this.currentUser = localStorage.getItem('user');
     }
   }
 
