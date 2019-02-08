@@ -17,7 +17,7 @@ export class BaseService {
 
   login(data)
   {
-      return this.http.post<{ message:string , result:{} , isAuthenticated:Boolean }>('users/login',data);
+      return this.http.post<{ message:string , result:{} , isAuthenticated:Boolean, token:string }>('users/login',data);
   }
 
   getGenre()

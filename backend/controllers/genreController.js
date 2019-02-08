@@ -2,13 +2,25 @@ const async = require('async');
 const Genre = require('../models/genreModel');
 
 exports.getGenre = function(req,res,next){
+
+ nJwt.verify(req.body.token, 'the_good_the_bad_and_the_uchihas', function (err, token) {
+
+   if(err)
+   {
+       return res.status(400).json({
+           message : "user not authorised",
+           authorised : false
+       })
+   } 
    Genre.find().exec((err,result)=>{
     console.log(result);
        res.status(200).json({
            message:'Data is retrieved succesfully',
            data : result,
+           authorised : true
        })
    })
+})
 }
 
 
@@ -23,7 +35,8 @@ exports.postGenre = function(req,res,next){
               message:"Genre posted succesfully",
               data:{
                   ...createdGenre,
-                  _id:createdGenre._id
+                  _id:createdGenre._id,
+                  authorised : true
               }
           })
      })
@@ -42,9 +55,11 @@ exports.deleteGenre = function(req,res,next){
            console.log(result);
        });
        res.status(200).json({
-           message:'genre deleted succesfully'
+           message:'genre deleted succesfully',
+           authorised : true
        }).catch(err=>{
            message:"There was some error"
+           authorised : false
        })
 
 }

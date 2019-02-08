@@ -30,6 +30,8 @@ login()
      console.log(result);
     if(result.isAuthenticated)
     {
+    localStorage.setItem('token',result.token);
+    localStorage.setItem('user',this.loginForm.value.email);
     this._base.isAuthenticated=true;  
     this.router.navigate(['genre']);
     }

@@ -34,6 +34,9 @@ import {
   Router
 } from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import {
+  applyOperation
+} from 'fast-json-patch'
 
 @Component({
   selector: 'app-genre',
@@ -82,8 +85,10 @@ export class GenreComponent implements OnInit {
 
 
   getGenres() {
-    this._baseService.getGenre().subscribe(res => {
-      this.genreArray = res.data;
+    this._baseService.getGenre().subscribe((res:any) => {
+      this.genreArray = res.data.filter(elem=>{
+         elem.user = localStorage.getItem('user');
+      });
       console.log('res', res.data);
     })
   }
@@ -117,6 +122,14 @@ export class GenreComponent implements OnInit {
   })
 
   add() {
+   
+    var doc = this.addForm.value;
+    var patch = [{
+      op: "add",
+      path: "/user",
+      value: localStorage.getItem('user')
+    }, ];
+
     this._baseService.postGenre(this.addForm.value).subscribe(data => {
       console.log('post data is :' + data)
       this.getGenres();

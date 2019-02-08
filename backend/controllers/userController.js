@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var User = require('../models/userModel');
 var bcrypt = require('bcrypt');
-
+var jwt = require('json-web-token');
 
 exports.login = function(req,res,next){
 
@@ -24,10 +24,15 @@ exports.login = function(req,res,next){
 
         })
        }
-
+       const token = jwt.sign({
+         email: req.body.email
+       }, 'the_good_the_bad_and_the_uchihas', {
+         expiresIn: "1h",
+       });
        res.status(200).json({
            result:result,
            message:"User authenticated successfully",
+           token : token,
            isAuthenticated:true
        })
     }).catch(err=>{
