@@ -1,4 +1,45 @@
 
 <h3>{{ currentUser }} logged in </h3>
 <button mat color="accent" class="logout" mat-raised-button (click)="logout()">Log Out<i class="fa fa-sign-out-alt">&nbsp;&nbsp;</i></button>
+<button mat color="accent" class="help" mat-raised-button (click)="openHelp(openModal)">Help<i class="fa fa-question"></i></button>
+
 <router-outlet></router-outlet>
+
+<ng-template #openModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <mat-toolbar>
+        <span class="title center2">How to Use?</span>
+      </mat-toolbar>
+    </div><br>
+    <div class="modal-body">
+      <div class="description2">
+          <span>
+                <b>1.</b> Click on the '+' button on the right and give your genre name. For ex: Movies.
+                <br><br>
+                <b>2.</b> On the next page there will be topics. Here you can give topics related to the genre above. For eg. Action Movies,Horror Movies etc.
+                <br><br>
+                <b>3.</b> On the topics part you have two options:<br>
+                           (i)  If you select no then a few more input fields will be provided to you namely:<br>
+                               (a) <b>link</b> : Any sort of valid link<br>
+                               (b) <b>linkCaption</b> : A caption for that link<br>
+                               The link and linkcaption will be presented in pairs and you can as many of the links as you want.<br>
+                               (c) <b>Description</b> : The Description about that topic.<br>
+                            If you select this then after clicking the card, you will see a modal with the data you had given earlier.<br><br>
+         
+
+                           (ii) The second option is that you can opt for further subtopics by selecting yes to 
+                            the question "Will there be any subtopic?"<br>
+                            If you select this then after clicking the card, you will be routed to a 
+                            new page named "Subtopics inside  `the topics you had given earlier`".
+                <br><br>
+                <b>4.</b> On the subtopics section you can have the same results as 3.(i) has.<br><br>
+
+                So there are two possible flows :<br>
+                (i) Genre -> Topic -> end.<br>
+               (ii) Genre -> Topic -> Sub-Topic
+               <br><br>
+            </span>
+        </div>
+    </div>
+  
+  </ng-template>

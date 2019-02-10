@@ -73,6 +73,10 @@
         font-family: 'Patrick Hand', cursive;
 }
 
+.description span {
+    word-wrap: break-word;
+}
+
 mat-toolbar{
     background: #ff4081;
     height: auto;

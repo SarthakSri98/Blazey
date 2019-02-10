@@ -18,10 +18,11 @@ import { MatSelectModule, MatOptionModule, MatSnackBarModule } from '@angular/ma
 import { SubTopicComponent } from './sub-topic/sub-topic.component';
 import { GaurdsService } from './auth/gaurds.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { Gaurd2Service } from './auth/gaurd2.service';
 
 var route:Routes = [
-  { path:'signup' ,component:SignupComponent },
-  { path:'' ,component:LoginComponent},
+  { path:'signup' ,component:SignupComponent, canActivate:[Gaurd2Service] },
+  { path:'' ,component:LoginComponent, canActivate: [Gaurd2Service]},
   { path:'genre' ,component:GenreComponent, canActivate:[ GaurdsService ]},
   { path:'genre/topic/:id' , component:TopicComponent, canActivate:[ GaurdsService ] },
   { path:'genre/topic/:id/subtopic/:id1', component:SubTopicComponent, canActivate:[ GaurdsService ] },
