@@ -11,6 +11,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TopicComponent } from './topic/topic.component';
@@ -43,7 +45,7 @@ var route:Routes = [
   imports: [
     BrowserModule,RouterModule.forRoot(route), BrowserAnimationsModule,
     MatToolbarModule,MatInputModule,MatDialogModule,MatButtonModule,MatSnackBarModule, ReactiveFormsModule,FormsModule,
-    HttpClientModule,MatSelectModule,MatOptionModule,HttpClientModule
+    HttpClientModule,MatSelectModule,MatOptionModule,HttpClientModule,MatMenuModule
   ],
   providers: [ GaurdsService ],
   bootstrap: [AppComponent]

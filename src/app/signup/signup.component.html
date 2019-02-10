@@ -3,8 +3,8 @@
 		<h1>Welcome</h1>
 		
 		<form class="form" [formGroup]="signupForm" (ngSubmit)="createUser()">
-			<input type="text" placeholder="Username" readonly onfocus="this.removeAttribute('readonly')" formControlName="email">
-			<input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly')" formControlName="password">
+			<input type="text" placeholder="Username" readonly onfocus="this.removeAttribute('readonly')" formControlName="email" style="color: black;">
+			<input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly')" style="color: black;" formControlName="password">
 			<button type="submit">Signup</button>
 		</form>
 	</div>

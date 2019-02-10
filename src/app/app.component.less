@@ -1,26 +1,34 @@
 @import (css)url(https://fonts.googleapis.com/css?family=Pacifico|Patrick+Hand);
 
+.menu{
+    position: relative;
+    /* right: 10%; */
+    float: right;
+    margin-right: 71px;
+    top: 14px;
+    font-size: 22px;
+}
 .logout{
-    position: absolute;
-    right: 71px;
-    top: 76px;}
+    float: right;
+}
+.help{
+    float: right;
+    margin: 12px;}
 
 h3{
     font-family: 'Patrick Hand', cursive;
-    position: absolute;
-   right: 71px;
-   top: 24px;
-   font-size: 20px;
    letter-spacing: 2.3px;
 }
-
-.help{
-        position: absolute;
-        float: left;
-        right: 94%;
-        top: 54px;
-    }
 
 .description2 span {
     word-wrap: break-word;
     white-space: normal;}    
+
+
+    @media screen and (max-width: 800px) {
+        .menu{
+            margin-right: 0;
+            right: 14px;
+            top: 14px;
+        }
+    }

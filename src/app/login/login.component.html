@@ -1,10 +1,13 @@
 <div id="wrapper">
 	<div class="container">
-		<h1>Welcome</h1>
+		<div class="hello">
+		<h1>Welcome to Blazey</h1><br>
+		<p>"The age of disorganized notes is over"</p>
+	    </div>
 		
 		<form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
-			<input type="text" placeholder="Username" readonly onfocus="this.removeAttribute('readonly')" formControlName="email">
-			<input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly')" formControlName="password">
+			<input type="text" placeholder="Username" readonly onfocus="this.removeAttribute('readonly')" formControlName="email" style="color: black;">
+			<input type="password" style="color: black;" placeholder="Password" readonly onfocus="this.removeAttribute('readonly')" formControlName="password">
       <button type="submit" id="login-button">Login</button><br><br>
       <button type="button" routerLink="signup" id="signup-button">SignUp</button>
 		</form>

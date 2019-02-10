@@ -1,7 +1,24 @@
 
-<h3>{{ currentUser }} logged in </h3>
-<button mat color="accent" class="logout" mat-raised-button (click)="logout()">Log Out<i class="fa fa-sign-out-alt">&nbsp;&nbsp;</i></button>
-<button mat color="accent" class="help" mat-raised-button (click)="openHelp(openModal)">Help<i class="fa fa-question"></i></button>
+
+<button mat-icon-button [matMenuTriggerFor]="menu" class="menu">
+        <i class="fa fa-ellipsis-v"></i>      
+    </button>
+      <mat-menu #menu="matMenu">
+            <h3 mat-menu-item>{{ currentUser }} logged in </h3>
+
+            <span mat-menu-item>
+                <button class="logout" mat color="accent" mat-raised-button (click)="logout()">
+                    Log Out<i class="fa fa-sign-out-alt">&nbsp;&nbsp;</i>
+                </button>
+            </span>  
+            
+            <span mat-manu-item>
+               <button mat color="accent" class="help" mat-raised-button (click)="openHelp(openModal)">
+                Help<i class="fa fa-question"></i></button>
+               </span>
+      </mat-menu>
+
+
 
 <router-outlet></router-outlet>
 
