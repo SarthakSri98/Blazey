@@ -40,8 +40,9 @@
     top: -15px;
 }
 .card{
-   height: 350px;
-   width: 25%;
+    height: auto;
+    min-height: 350px;
+       width: 25%;
       float: left;
    border-radius: 14px;
    margin-left: 31px;
