@@ -75,7 +75,14 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
   </div><br>
   <p *ngIf="currentOpened?.content" style="text-align: center;">Description</p>
   <div class="modal-body">
-    <div class="description2"><span><pre>{{ currentOpened?.content }}</pre></span></div>
+    <div class="description2"><span><pre style="
+      overflow-x: auto;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+  ">{{ currentOpened?.content }}</pre></span></div>
   </div>
 
 </ng-template>
