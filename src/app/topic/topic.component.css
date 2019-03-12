@@ -140,7 +140,10 @@ td span {
     outline: none;
     z-index: 1000;
 }
-
+.image{
+    max-height: 80%;
+    max-width: 100%;
+}
 
 @media screen and (max-width: 800px) {
     .center1{

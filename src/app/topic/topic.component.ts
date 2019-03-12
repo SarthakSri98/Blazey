@@ -37,7 +37,8 @@ export class TopicComponent implements OnInit {
   width1 = '600px';
   list = ['a'];
   topicForm : FormGroup;
-  linkData : FormArray
+  linkData : FormArray;
+  imageData : FormArray
 
   constructor(private modalService: MatDialog , private _baseService : BaseService, 
     private router:ActivatedRoute, private formBuilder: FormBuilder, private route : Router, public snackBar : MatSnackBar) { }
@@ -49,7 +50,8 @@ export class TopicComponent implements OnInit {
       topicName :'',
       isSubTopic :'',
       content :'',
-      linkData : this.formBuilder.array([ this.createItem() ])
+      linkData : this.formBuilder.array([ this.createItem() ]),
+      imageData : this.formBuilder.array([ this.createImage() ])
     })
 
     this.id = this.router.snapshot.params.id;
@@ -93,6 +95,18 @@ createItem(): FormGroup {
 addItem() {
   this.linkData = this.topicForm.get('linkData') as FormArray;
   this.linkData.push(this.createItem());
+}
+
+createImage(): FormGroup {
+  return this.formBuilder.group({
+    imageLink : '',
+    imageDesc : ''
+  });
+}
+
+addImage() {
+  this.imageData = this.topicForm.get('imageData') as FormArray;
+  this.imageData.push(this.createImage());
 }
 
 addNew(content) {

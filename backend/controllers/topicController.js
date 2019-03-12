@@ -27,6 +27,7 @@ exports.postTopic = function(req,res,next){
          genre : mongoose.Types.ObjectId(req.params.id),
          isSubTopic : req.body.isSubTopic,
          linkData : req.body.linkData,
+         imageData : req.body.imageData,
          content : req.body.content
     });
 

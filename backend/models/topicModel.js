@@ -10,6 +10,7 @@ const topicSchema = new Schema({
    subTopics  : [{ type: Schema.Types.ObjectId , ref:'SubTopic'  }],
    isSubTopic : { type : Boolean },
    linkData : [{ link:String , linkCaption : String }],
+   imageData : [{ imageLink:String , imageDesc: String }],
    content : { type: String , max:3000  , min:0}
 });
 

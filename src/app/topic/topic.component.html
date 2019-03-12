@@ -73,6 +73,25 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
       </tr>
     </table>
   </div><br>
+
+  <p style="text-align: center;" *ngIf="currentOpened.imageData.imageDesc && currentOpened.imageData.imageDesc.length>0">Important Images : </p><br>
+  <div class="modal-body" *ngFor="let imageData of currentOpened.imageData;let i=index">
+    <table *ngIf="imageData.imageDesc && imageData.imageDesc.length>0">
+      <tr>
+        <td><span>{{i+1}}.</span></td>
+        <td><a [href]="imageData.imageLink" target="_blank"><img [src]="imageData.imageLink" class="image"></a>
+        <p style="
+        overflow-x: auto;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+    ">Desc : {{ imageData.imageDesc }}</p></td>
+      </tr>
+    </table>
+  </div><br>
+
   <p *ngIf="currentOpened?.content" style="text-align: center;">Description</p>
   <div class="modal-body">
     <div class="description2"><span><pre style="
@@ -118,6 +137,26 @@ text-align: center;">IN {{ currentGenre | uppercase }}</h2>
       </div>
       <span (click)="addItem()" class="addLink" style="font-size: 13px;float:right;cursor: pointer;"><i class="fas fa-plus"
           style="font-size: 10px;"></i> Add more Links</span>
+
+<!-- add image -->
+
+      <div formArrayName="imageData" *ngFor="let item of topicForm.get('imageData').controls; let i = index;">
+            <div [formGroupName]="i">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Image" rows="4" formControlName="imageLink">
+              </mat-form-field>
+    
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="imageDesc" rows="4" formControlName="imageDesc">
+              </mat-form-field>
+    
+            </div>
+          </div>
+          <span (click)="addImage()" class="addLink" style="font-size: 13px;float:right;cursor: pointer;"><i class="fas fa-plus"
+              style="font-size: 10px;"></i> Add more Images</span>
+
+<!-- add content -->
+
       <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Description" rows="4" formControlName="content" required></textarea>
       </mat-form-field>
